@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuqi Zhang Urban Planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a scrolling portfolio; sticky nav, filterable project cards that open into full case studies with zoomable figures. */
+  --acc:#2C7A7B; --acc-d:#1D5B5C; --tint:#D3E8E6; --tint2:#EEF6F5; --ink:#263133; --muted:#6B7678; --rule:#DCE5E4; --bg:#FFFFFF;
+  --font:"Poppins","Helvetica Neue",Arial,sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;font-weight:300}
+img{max-width:100%;display:block}
+a{color:var(--acc-d)}
+h1,h2,h3{font-weight:600;text-wrap:balance}
+button{font-family:inherit}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #F2C14E;outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);border-bottom:1px solid var(--rule)}
+header.nav .wrap{display:flex;align-items:center;gap:22px;height:62px}
+header.nav .brand{font-weight:600;letter-spacing:.14em;font-size:14px;text-decoration:none;color:var(--ink);white-space:nowrap}
+header.nav nav{display:flex;gap:20px;margin-left:auto;overflow-x:auto}
+header.nav nav a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;white-space:nowrap}
+header.nav nav a:hover,header.nav nav a.on{color:var(--acc)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;min-height:560px;background:var(--tint2)}
+.hero .txt{padding:80px 56px 56px max(24px,calc((100vw - 1180px)/2 + 24px));display:flex;flex-direction:column;justify-content:center}
+.hero .eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.hero h1{font-size:clamp(40px,5.2vw,68px);line-height:1.02;letter-spacing:.02em;margin-top:16px}
+.hero p{font-size:18px;line-height:1.65;color:#465255;margin-top:22px;max-width:560px}
+.hero .cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--acc);cursor:pointer}
+.btn.solid{background:var(--acc);color:#fff}.btn.ghost{background:transparent;color:var(--acc-d)}
+.hero .ph{position:relative;overflow:hidden;min-height:420px}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0;border-bottom:1px solid var(--rule)}
+.stat .n{font-size:36px;font-weight:600;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat .l{font-size:13.5px;color:var(--muted);line-height:1.4;margin-top:2px}
+
+section.block{padding:72px 0}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sec-h h2{font-size:34px;letter-spacing:.02em}
+.sec-h .k{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);font-weight:600}
+
+/* filters + cards */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.chip{border:1px solid var(--rule);background:#fff;color:var(--ink);border-radius:999px;padding:9px 15px;font-size:13.5px;font-weight:500;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.chip .c{opacity:.7;margin-left:4px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden;cursor:pointer;text-align:left;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;padding:0;color:inherit}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(30,60,60,.14)}
+.card .im{aspect-ratio:16/10;overflow:hidden;background:var(--tint2)}
+.card .im img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .im img{transform:scale(1.04)}
+.card .bd{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.card h3{font-size:18px;line-height:1.3}
+.card p{font-size:14px;line-height:1.55;color:#4F5A5C}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.tag{font-size:11.5px;font-weight:500;background:var(--tint2);color:var(--acc-d);padding:4px 8px;border-radius:4px}
+.card.hide{display:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
+.about p{font-size:16px;line-height:1.7;color:#465255}
+.edu{display:grid;gap:14px;margin-top:24px}
+.edu div{border-left:3px solid var(--tint);padding-left:14px}
+.edu b{font-weight:600;color:var(--ink)}
+.edu span{display:block;font-size:14px;color:var(--muted)}
+.skills h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-d);margin:18px 0 6px}
+.skills h3:first-child{margin-top:0}
+.sk{display:grid;grid-template-columns:150px 1fr 40px;gap:12px;align-items:center;font-size:14px;margin-top:8px}
+.sk .bar{height:8px;background:#E4ECEB;border-radius:4px;overflow:hidden}
+.sk .bar i{display:block;height:100%;background:var(--acc);border-radius:4px;width:0;transition:width 1s ease}
+.sk.in .bar i{width:var(--w)}
+.sk .pc{font-size:12.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+
+/* timeline */
+.tl{display:grid;gap:0;border-left:2px solid var(--tint);margin-left:8px}
+.tl .it{position:relative;padding:0 0 26px 26px}
+.tl .it::before{content:"";position:absolute;left:-8px;top:4px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--acc)}
+.tl .yr{font-size:12.5px;font-weight:600;color:var(--acc);letter-spacing:.08em}
+.tl h3{font-size:17px;margin-top:2px}
+.tl p{font-size:14.5px;color:#4F5A5C;line-height:1.55;margin-top:4px}
+
+/* detail modal */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(18,28,28,.6);display:none;overflow-y:auto;padding:30px 16px}
+.modal.open{display:block}
+.sheet{max-width:1080px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;position:relative}
+.sheet .x{position:sticky;top:12px;float:right;margin:12px 12px 0 0;z-index:3;width:42px;height:42px;border-radius:50%;border:0;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.2);font-size:22px;cursor:pointer}
+.sheet .hd{padding:34px 40px 10px}
+.sheet .hd .k{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.sheet .hd h2{font-size:32px;margin-top:8px;line-height:1.15}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 26px;padding:16px 40px 6px}
+.facts div{font-size:14px;line-height:1.5}
+.facts dt{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.sheet .body{padding:16px 40px 40px}
+.sheet .body p{font-size:15.5px;line-height:1.7;color:#465255;max-width:780px}
+.sheet .body h3{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--acc-d);margin:28px 0 12px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0 6px}
+.nums .stat{background:var(--tint2);border-radius:8px;padding:14px 16px}
+.nums .stat .n{font-size:30px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.gal figure{cursor:zoom-in}
+.gal .f{border:1px solid var(--rule);border-radius:6px;background:#fff;aspect-ratio:4/3;overflow:hidden}
+.gal .f img{width:100%;height:100%;object-fit:contain}
+.gal figcaption{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45}
+.bul{list-style:none;display:grid;gap:9px;max-width:820px}
+.bul li{font-size:15px;line-height:1.6;color:#465255;padding-left:18px;position:relative}
+.bul li::before{content:"";position:absolute;left:0;top:.65em;width:7px;height:7px;border-radius:50%;background:var(--acc)}
+.role{background:var(--tint2);border-radius:8px;padding:16px 18px;margin-top:22px;font-size:15px;line-height:1.6;color:#3E4A4C;max-width:820px}
+.role b{color:var(--acc-d)}
+.navp{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--rule);padding:18px 40px}
+
+/* before/after slider */
+.ba{position:relative;user-select:none;overflow:hidden;border-radius:8px;aspect-ratio:var(--ar);background:#ddd;touch-action:pan-y}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba .top{clip-path:inset(0 calc(100% - var(--p)) 0 0)}
+.ba .hd2{position:absolute;top:0;bottom:0;left:var(--p);width:3px;background:#fff;transform:translateX(-50%);box-shadow:0 0 6px rgba(0,0,0,.4)}
+.ba .knob{position:absolute;top:50%;left:var(--p);transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--acc-d);font-weight:600}
+.ba .lb{position:absolute;top:12px;font-size:11.5px;font-weight:600;letter-spacing:.12em;color:#fff;background:rgba(30,40,40,.8);padding:6px 9px;border-radius:3px}
+.ba .lb.l{left:12px}.ba .lb.r{right:12px;background:var(--acc)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.bas{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(10,16,16,.92);display:none;align-items:center;justify-content:center;padding:30px}
+.lb.open{display:flex}
+.lb img{max-width:96vw;max-height:84vh;object-fit:contain;background:#fff;border-radius:4px}
+.lb .cp{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#E6F0EF;font-size:14px;padding:0 60px}
+.lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer}
+.lb .c{top:16px;right:16px}.lb .p{left:16px;top:50%}.lb .n{right:16px;top:50%}
+
+footer{background:var(--ink);color:#DDE7E6;padding:56px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-end}
+footer h2{font-size:40px;color:#fff;letter-spacing:.04em}
+footer p{font-size:15px;line-height:1.9}
+footer a{color:#9FD3CF}
+
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero .txt{padding:48px 24px}.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.bas{grid-template-columns:1fr}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}header.nav nav{gap:14px}.sheet .hd,.sheet .body,.facts,.navp{padding-left:20px;padding-right:20px}.sk{grid-template-columns:110px 1fr 36px}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.card,.card .im img,.sk .bar i{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top">YUQI ZHANG</a>
+  <nav aria-label="Sections"><a href="#work">Work</a><a href="flipbook/">Flipbook</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero">
+  <div class="txt">
+    <div class="eyebrow">Urban Planning Portfolio · 2026</div>
+    <h1>Planning with data, for streets, parks and public space.</h1>
+    <p>I'm Yuqi Zhang, a Master of City Planning candidate at the University of Pennsylvania focused on transportation, spatial analysis and parks. I turn GIS, models and resident surveys into plans people can act on.</p>
+    <div class="cta"><a class="btn solid" href="#work">View projects</a><a class="btn ghost" href="flipbook/">Open flipbook portfolio</a><a class="btn ghost" href="#contact">Get in touch</a></div>
+  </div>
+  <div class="ph"><img src="img/cover.jpg" alt="Benjamin Franklin Parkway and the Philadelphia skyline from the Art Museum steps"></div>
+</section>
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">11</div><div class="l">projects across studios, research and practice</div></div>
+    <div class="stat"><div class="n">296</div><div class="l">parks screened with GIS at Fairfax County</div></div>
+    <div class="stat"><div class="n">600+</div><div class="l">resident survey responses analyzed</div></div>
+    <div class="stat"><div class="n">4.0</div><div class="l">undergraduate GPA, Arizona State University</div></div>
+  </div>
+</div>
+
+<section class="block" id="work"><div class="wrap">
+  <div class="sec-h"><h2>Selected Work</h2><span class="k">Click a project to open it</span></div>
+  <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="block" id="about" style="background:var(--tint2)"><div class="wrap about">
+  <div>
+    <div class="sec-h"><h2>About</h2></div>
+    <p>My background spans three programs in two countries: city planning at Penn, parks and recreation management at Arizona State, and human geography and urban &amp; rural planning at Hainan University. That mix shapes how I work. I look at infrastructure through the people who use it, and I back recommendations with spatial data and models.</p>
+    <div class="edu">
+      <div><b>University of Pennsylvania</b><span>Master of City Planning, Transportation &amp; Sustainable Infrastructure · 2025–2027 (expected) · Graduate Certificate in GIS &amp; Spatial Analysis (in progress)</span></div>
+      <div><b>Arizona State University</b><span>B.S. Parks, Recreation and Sport Management · GPA 4.0 · 2021–2025</span></div>
+      <div><b>Hainan University</b><span>B.M. Human Geography and Urban &amp; Rural Planning · GPA 3.91 · 2021–2025</span></div>
+    </div>
+  </div>
+  <div class="skills" id="skills"></div>
+</div></section>
+
+<section class="block" id="experience"><div class="wrap">
+  <div class="sec-h"><h2>Experience</h2></div>
+  <div class="tl">
+    <div class="it"><div class="yr">2026 · FAIRFAX, VA</div><h3>Fairfax County Park Authority · Planner Intern, Long Range Planning</h3><p>Park classification analysis, park access level-of-service standards, needs assessment survey analysis and a youth engagement toolkit.</p></div>
+    <div class="it"><div class="yr">2025 · HEFEI, CHINA</div><h3>Hefei Garden Group · Integrated Assistant Intern</h3><p>Planning coordination and operations support for large public parks and botanical gardens.</p></div>
+    <div class="it"><div class="yr">2022, 2023 · HEFEI, CHINA</div><h3>Hefei Binhu New District Construction Management · Project Planner Intern</h3><p>Public space and pedestrian circulation for the 14th China International Garden Expo urban renewal area; GIS visitor maps.</p></div>
+    <div class="it"><div class="yr">2022 · HEFEI, CHINA</div><h3>Hefei Urban Planning and Design Institute · Planner Intern</h3><p>Market research and technical reporting for a new-energy technology production site; project scheduling.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer id="contact"><div class="wrap">
+  <div><h2>Let's talk.</h2><p style="margin-top:10px">Open to transportation, parks and GIS planning roles.</p></div>
+  <p>yqizhang@upenn.edu<br>(267) 709-0524<br><a href="https://www.linkedin.com/in/yuqi-zhang-cpln">linkedin.com/in/yuqi-zhang-cpln</a><br>Philadelphia, PA</p>
+</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle"><div class="sheet" id="sheet"></div></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><img id="lbimg" alt=""><div class="cp" id="lbcap"></div><button class="c" id="lbx" aria-label="Close">×</button><button class="p" id="lbp" aria-label="Previous image">‹</button><button class="n" id="lbn" aria-label="Next image">›</button></div>
+
+<script>
+const CATS={studios:'Planning Studios',parks:'Parks & Public Space',transport:'Transportation',modeling:'Spatial Modeling',policy:'Neighborhood & Policy'};
+const P=[
+{id:'port-richmond',cat:'studios',title:'Port Richmond 2045 Neighborhood Plan',place:'Philadelphia, PA',year:'Spring 2026',thumb:'pr_sec_prop.jpg',
+ blurb:'Led the transportation chapter of a community development plan for a neighborhood cut off from its waterfront by I-95 and freight.',
+ tags:['ArcGIS Pro','Complete Streets','Illustrator'],
+ facts:{'Type':'MCP Studio I','Instructor':'Katie Levesque','Team':'M. Amole, G. Britt, D. Caddle, A. Duque, T. Saltzman, Y. Zhang, Y. Zhong'},
+ intro:'Port Richmond is a historic industrial and rowhouse neighborhood in Philadelphia. The plan covers culture, industry, transportation, housing and greenspace for the Port Richmond CDC, with costed strategies, partners and timelines.',
+ nums:[['>50%','commuters drive alone vs. 45% citywide'],['2%','work remotely vs. 14% citywide'],['1','Indego bike-share station'],['4','transportation objectives']],
+ role:'Led the transportation chapter: existing conditions with GIS and Census/ACS data, four objectives with costed strategies, maps and street sections; edited and integrated the final report.',
+ ba:[['pr_xw_before.jpg','pr_xw_after.jpg','Elevated crosswalk (T.2)','600/655'],['pr_bk_before.jpg','pr_bk_after.jpg','Castor Avenue bike lane (T.3)','600/516']],
+ bul:['T.1 Roadway safety: calm traffic near schools and high-risk intersections; clarify truck routes.','T.2 Walking: curb extensions, raised crossings, sidewalk repair and ADA ramps on routes to transit.','T.3 Biking: protected lanes on key corridors and a connected network to parks and the waterfront.','T.4 Fewer solo car trips: better stops and service on SEPTA 25, 60 and the G trolley.'],
+ gal:[['pr_crash.jpg','Fatal crash density: Aramingo and Allegheny Avenues are on the High Injury Network.'],['pr_sec_cur.jpg','Aramingo Avenue today: four lanes, a turn lane and unprotected bike lanes.'],['pr_sec_prop.jpg','Proposed: narrower lanes, planted median, curb-separated bike lanes, wider sidewalks.'],['pr_cross.jpg','Crosswalk with proposed curb bump-outs.'],['pr_bike.jpg','Existing bike infrastructure and network gaps.'],['pr_mode.jpg','Port Richmond commuting mode share.']]},
+{id:'haven-stad',cat:'studios',title:'Haven-Stad: Amsterdam’s Western Harbor',place:'Amsterdam, NL',year:'Fall 2026 · in progress',thumb:'ams_rooms.jpg',
+ blurb:'A dense district organized around blue-green "neighborhood living rooms," active mobility and industry that stays.',
+ tags:['Urban design','Block typology','Fieldwork'],
+ facts:{'Type':'MCP Studio II, fieldwork Sept. 26 – Oct. 2, 2026','Instructor':'Gregory Haley','Team':'K. Knox, W. Nay, S. Saint-Phard, Y. Zhang'},
+ intro:'Haven-Stad will turn port and light-industrial land into a dense district. Our concept, Buurthuiskamers, centers blue and green public space, a legible street network and mixed residential–industrial blocks.',
+ nums:[['170,000','social rental homes'],['122,500','active home seekers'],['11 yrs','average wait'],['56%','of residents bike to work']],
+ role:'Port history and street-lighting continuity near bridges and tunnels; now developing block typologies (~86 × 46 m blocks, ~15 m courtyards) and green space for mixed residential–industrial blocks.',
+ bul:['Eco-industry corridor: buildings clustered near rail share inputs and logistics.','Noise buffers: industry shields housing from the rail line; a berm buffers the A10.','Next phase: circular production and residual-heat reuse. Dimensions are studio explorations.'],
+ gal:[['ams_cover.jpg','Haven-Stad site.'],['ams_frame.jpg','Four moves for the district.'],['ams_rooms.jpg','City- and block-scale living rooms.'],['ams_streets.jpg','Street hierarchy.'],['ams_plan.jpg','Draft land-use plan.'],['ams_ind.jpg','Eco-industry corridor.'],['ams_indsec.jpg','Industrial mixed-use section.'],['ams_ressec.jpg','Residential–commercial section.']]},
+{id:'fairfax',cat:'parks',title:'Fairfax County Park Authority',place:'Fairfax, VA',year:'Summer 2026',thumb:'ff_franconia.jpg',
+ blurb:'Long-range park planning: park classification, access standards, a 600+ response needs survey and a youth engagement kit.',
+ tags:['ArcGIS Pro','R','Policy'],
+ facts:{'Role':'Planner Intern, Long Range Planning','Supervisor':'Stephanie Cornejo','Collaborator':'Francisco Ibarra (classification)'},
+ intro:'Four projects for the county park system. The classification analysis asked which Local Parks better fit the Comprehensive Plan definition of Resource-Based Parks.',
+ nums:[['296','Local Parks screened'],['22','candidates for potential reclassification'],['9','peer jurisdictions benchmarked'],['600+','survey responses analyzed']],
+ role:'GIS overlay of park boundaries with Resource Protection Areas; benchmark from Resource-Based Parks (median RPA share 72.88%); 182 stream-valley parcels reviewed for easements; draft 5- and 10-minute walk access standards; demographic cross-tabs in R; Kids Kit for ages 4–17.',
+ bul:['Findings were preliminary recommendations to the planning team, not adopted decisions.','Access standards are drafts for discussion, not adopted county standards.','Kids Kit is a recommended framework; activities have not yet been piloted.'],
+ gal:[['ff_franconia.jpg','Franconia Forest · 6.7 ac · 72.92% RPA: a strong candidate.'],['ff_eakin.jpg','Eakin–Mantua · 72.2 ac · 94% RPA, but active fields keep it Local.'],['ff_q8.jpg','Q8 Why residents visit parks.'],['ff_q9.jpg','Q9 Choosing a program: affordability 75.4%.'],['ff_q11.jpg','Q11 Barriers to park use.'],['ff_q8race.jpg','Cross-tabulation by race.']]},
+{id:'wenchang',cat:'parks',title:'Tropical Botanical Garden, Wenchang',place:'Hainan, China',year:'2024',thumb:'wc_sketch.jpg',
+ blurb:'A 349,122 m² botanical garden with facilities sized from the park design code and sited by visitor demand.',
+ tags:['Raster analysis','AutoCAD','Hand drawing'],
+ facts:{'Type':'Computer Cartography final project, Hainan University','Advisor':'Assoc. Prof. Keyu Chen','Team':'Core member, team of five'},
+ intro:'Six zones around a rainforest core: Hainan native plants with a flower-shaped plaza, science education, a children’s area, a university research base and entry services.',
+ nums:[['13,965','visitor capacity'],['279','restroom stalls required'],['2,793+','seats required'],['≤175','car parking spaces']],
+ role:'Raster analysis of visitor hot spots and accessibility to site restrooms, lighting, bins and seating; facility counts from China’s park design code.',
+ bul:['Bins every 50 m on primary and 100 m on secondary paths.','18 outdoor restrooms with an accessible stall in each; female-to-male ratio at least 1.5:1.','Five lighting types balance safety, night views and light pollution.'],
+ gal:[['ch_wczones.jpg','Zone areas in the 1 + 3 layout (m²).'],['wc_cafe.jpg','Visitor center café, team hand drawing.'],['wc_sketch.jpg','Children’s exploration area, team hand drawing.'],['wc_light1.jpg','Lighting plan.'],['wc_bins.jpg','Waste bin plan.'],['wc_toilet.jpg','Restroom plan.'],['wc_bench.jpg','Seating plan.']]},
+{id:'uav',cat:'transport',title:'Drone–Truck Collaborative Delivery',place:'Shenzhen, China',year:'2025',thumb:'uav_3d.jpg',
+ blurb:'Optimizing last-mile delivery with drones and trucks: MILP, TSP heuristics and a genetic algorithm.',
+ tags:['Python','Gurobi','ArcGIS'],
+ facts:{'Type':'Undergraduate thesis','Advisor':'Lin Zhang','Team':'J. Gong, W. Lin, Y. Zhang (co-authors, listed in no particular order)'},
+ intro:'Compared drone-only, truck-only and collaborative delivery around Shenzhen Talent Park (2.37 km², 50 demand nodes). Objective: 0.8 × time + 0.2 × cost.',
+ nums:[['−41.2%','completion time vs. truck only'],['−12.5%','distance (19.20 → 16.80 km)'],['55.88','weighted objective vs. 58.08'],['50','demand nodes']],
+ role:'Built the Python framework: MILP models in Gurobi, nearest-neighbor warm starts and a genetic algorithm; set up the ArcGIS case study and scenarios.',
+ bul:['Trucks serve dense cores; drones take scattered or remote stops.','Weighting time at 0.9 widened the collaborative advantage to 6.4%.','Results are model simulations under stated assumptions, not observed operations.'],
+ gal:[['uav_3d.jpg','Study area around Shenzhen Talent Park.'],['uav_flow.jpg','Algorithm flowchart.'],['uav_r1.jpg','Drone-only routes.'],['uav_r2.jpg','Truck-only routes.'],['uav_r3.jpg','Collaborative routes.'],['uav_sat.jpg','Satellite view of the study area.']]},
+{id:'analytics',cat:'transport',title:'Transportation Planning Analytics',place:'Philadelphia & U.S.',year:'Fall 2025',thumb:'ch_transit.jpg',
+ blurb:'Transit performance from the NTD, a 30-year benefit–cost analysis, Philadelphia travel trends and ridership models.',
+ tags:['R','NTD','Benefit–cost'],
+ facts:{'Course':'CPLN 5500 Introduction to Transportation Planning','Team':'With Weikang Kong and Gavin Defina'},
+ intro:'A set of transportation analyses. Heavy rail is the most productive per route mile and recovers the largest share of costs from fares (0.562).',
+ nums:[['28.8 mph','commuter rail average speed'],['+$3.3M','NPV at 4% discount rate'],['−$33.5M','NPV at 6%'],['71.3%','Philadelphia households with a car (2020)']],
+ role:'Data assembly and analysis in R and Excel; OLS station ridership models with residual diagnostics; zero-trip analysis from a household travel survey.',
+ bul:['The highway project’s verdict flips with the discount rate, so unquantified effects carry the decision.','Car ownership rose from 0.89 to 1.06 per household (1980–2020) while bike commuting doubled to 2.1%.'],
+ gal:[['ch_transit.jpg','U.S. transit performance by mode, 2024 (National Transit Database).']]},
+{id:'orlando',cat:'modeling',title:'Orlando Growth Scenario Model',place:'Orlando, FL',year:'Spring 2026',thumb:'orl_scen.jpg',
+ blurb:'Logistic regression forecast of land development under a hypothetical corridor, checked against FEMA floodplains.',
+ tags:['R','Logistic regression','FEMA'],
+ facts:{'Course':'CPLN 6750 Land Use & Environmental Modeling','Instructor':'Michael Fichman','Team':'Yichen Hu, Yuqi Zhang'},
+ intro:'Modeled land conversion from 2011 to 2019 on a ~900 m grid with NLCD data, then forecast 2019–2027 development with and without an east–west connector to US 192.',
+ nums:[['0.85','AUC'],['+119','cells under the corridor (+5.7%)'],['330','scenario cells in FEMA floodplains (15%)'],['0.754','sensitivity at Youden threshold']],
+ role:'Model specification and evaluation in R, scenario design and floodplain overlay; co-wrote the planning memo.',
+ bul:['Spatial lag of nearby development is the strongest predictor: edge expansion.','Steer corridor growth to compact nodes; strengthen floodplain review in Orange and Lake Counties.'],
+ gal:[['orl_base.jpg','Baseline forecast, 2,078 cells.'],['orl_scen.jpg','Corridor scenario, 2,197 cells.'],['orl_flood.jpg','Predicted development vs. FEMA floodplain.'],['orl_bar.jpg','Development rate by 2011 land cover.'],['orl_roc.jpg','ROC curve, AUC 0.85.']]},
+{id:'flood',cat:'modeling',title:'Flood Probability: Calgary to Salt Lake City',place:'Calgary & Salt Lake City',year:'Spring 2026',thumb:'fl_slc.jpg',
+ blurb:'A raster-based logistic flood model trained on Calgary’s 2013 flood and transferred to Salt Lake City.',
+ tags:['R','Raster GIS','DEM'],
+ facts:{'Course':'CPLN 6750 Land Use & Environmental Modeling','Team':'Gab Chen, Yuqi Zhang'},
+ intro:'Elevation, slope, flow accumulation, distance to river and impervious surface summarized on a 500 × 500 m fishnet.',
+ nums:[['0.93','AUC on 30% test set'],['500 m','fishnet cell size'],['5','raster predictors']],
+ role:'Raster processing and zonal statistics, model fitting and transfer, and a written discussion of limits.',
+ bul:['A high AUC still hides missed flood cells.','Salt Lake City lacks local inundation data to validate the transfer; use for screening only.'],
+ gal:[['fl_vars.jpg','Predictor rasters.'],['fl_cal.jpg','Calgary predicted probability.'],['fl_class.jpg','Calgary classification outcomes.'],['fl_slc.jpg','Salt Lake City transferred prediction.']]},
+{id:'ithaca',cat:'modeling',title:'Hydrological Risk Assessment',place:'Ithaca, NY',year:'Spring 2026',thumb:'ith_shed.jpg',
+ blurb:'Could a proposed hazardous waste facility reach the city’s drinking water intake during a storm?',
+ tags:['Watershed GIS','SSURGO','NLCD'],
+ facts:{'Type':'Graduate coursework, decision brief'},
+ intro:'Delineated the intake’s contributing watershed from elevation data and traced surface flow from the site.',
+ nums:[['Low','risk under normal conditions']],
+ role:'Watershed delineation, flow network, land cover and soils overlay; brief for a city director.',
+ bul:['The site lies outside the intake’s watershed: no direct surface pathway.','Remaining risks are indirect: groundwater and extreme storms.'],
+ gal:[['ith_site.jpg','Site context.'],['ith_shed.jpg','Watershed delineation and surface flow network.']]},
+{id:'spruce-hill',cat:'policy',title:'Spruce Hill Neighborhood Study',place:'Philadelphia, PA',year:'Fall 2025',thumb:'sh_photo.jpg',
+ blurb:'How the University of Pennsylvania shapes who lives in Spruce Hill, what housing costs and which businesses survive.',
+ tags:['Census/ACS','R','Excel'],
+ facts:{'Course':'CPLN 5010 Quantitative Planning Analysis','Team':'J. Dick, D. Jalloh, O. Martin, Y. Zhang'},
+ intro:'West Philadelphia’s first streetcar suburb now sits beside Penn. Population fell while households grew as the neighborhood turned student- and renter-heavy.',
+ nums:[['−17%','population, 2013–2023'],['+14%','households'],['91%','renters vs. 48% citywide'],['73%','aged 15–34 vs. 32%']],
+ role:'Demographic and housing analysis from Census and ACS data and an individual neighborhood portrait.',
+ bul:['Rising renter concentration and affordability pressure alongside university-driven investment.'],
+ gal:[['sh_info.jpg','Neighborhood composition vs. Philadelphia.'],['sh_map.jpg','Geographic context.'],['sh_income.jpg','Income by household type.'],['sh_hist.jpg','Southeast Spruce Hill Historic District.']]},
+{id:'forecasts',cat:'policy',title:'Philadelphia Population & Employment Forecasts',place:'Philadelphia, PA',year:'Fall 2025',thumb:'ch_jobs.jpg',
+ blurb:'Policy memos to the Mayor’s office: a cohort-survival housing forecast and a five-method employment forecast.',
+ tags:['Cohort-survival','Shift-share','Policy memo'],
+ facts:{'Course':'CPLN 5010','Team':'Population memo with Oliver Martin; employment memo individual'},
+ intro:'Philadelphia is growing again but aging: seniors and Millennials drive most of the growth. Health care, education and professional services lead job gains.',
+ nums:[['+50k','residents, 2015–2030'],['+16k','owner households'],['32–94k','projected job gains to 2031'],['~670k','county jobs in 2031']],
+ role:'Forecast methods, recommendations and memo writing for a non-technical audience.',
+ bul:['Keep senior housing in repair and add low-maintenance units near transit.','Support first-time Millennial buyers.','Reinforce export sectors and talent pipelines.'],
+ gal:[['ch_jobs.jpg','Range of projected job gains across five methods, 2022–2031.']]}
+];
+
+const grid=document.getElementById('grid'), filters=document.getElementById('filters');
+P.forEach((p,i)=>{const b=document.createElement('button');b.className='card';b.dataset.cat=p.cat;b.setAttribute('aria-label','Open project: '+p.title);
+ b.innerHTML=`<div class="im"><img src="img/${p.thumb}" alt="" loading="lazy"></div><div class="bd"><div class="meta"><span>${CATS[p.cat]}</span><span>${p.year}</span></div><h3>${p.title}</h3><p>${p.blurb}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div>`;
+ b.addEventListener('click',()=>openP(i)); grid.appendChild(b);});
+const fl=[['all','All']].concat(Object.entries(CATS));
+fl.forEach(([k,n])=>{const c=document.createElement('button');c.className='chip';c.setAttribute('aria-pressed',k==='all');
+ const cnt=k==='all'?P.length:P.filter(p=>p.cat===k).length; c.innerHTML=`${n}<span class="c">${cnt}</span>`;
+ c.addEventListener('click',()=>{filters.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');
+  grid.querySelectorAll('.card').forEach(cd=>cd.classList.toggle('hide',k!=='all'&&cd.dataset.cat!==k));}); filters.appendChild(c);});
+
+// skills
+const SK=[['GIS & Spatial Analysis',[['ArcGIS Pro',95],['ArcGIS Online',90]]],['Data & Modeling',[['R',90],['Python',80],['Excel',95],['SPSS',85]]],['Transportation Modeling',[['PTV Visum',85],['PTV Vissim',85],['Synchro',90]]],['Design & Visualization',[['Adobe Illustrator',90],['Adobe InDesign',85],['AutoCAD',90]]]];
+const skel=document.getElementById('skills');
+skel.innerHTML=SK.map(([h,r])=>`<h3>${h}</h3>`+r.map(([n,v])=>`<div class="sk" style="--w:${v}%"><span>${n}</span><div class="bar"><i></i></div><span class="pc">${v}%</span></div>`).join('')).join('');
+const io=('IntersectionObserver' in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sk').forEach(s=>s.classList.add('in'));io.unobserve(e.target);}}),{threshold:.2}):null;
+if(io) io.observe(skel); else skel.querySelectorAll('.sk').forEach(s=>s.classList.add('in'));
+
+// modal
+const modal=document.getElementById('modal'), sheet=document.getElementById('sheet'); let cur=-1, lastFocus=null;
+function openP(i){ cur=i; const p=P[i]; lastFocus=document.activeElement;
+ const ba=(p.ba||[]).map(([a,b,cap,ar])=>`<figure><div class="ba" style="--p:50%;--ar:${ar}"><img src="img/${b}" alt="After: ${cap}"><img class="top" src="img/${a}" alt="Before: ${cap}"><div class="hd2"></div><div class="knob">⇆</div><span class="lb l">BEFORE</span><span class="lb r">AFTER</span><input type="range" min="0" max="100" value="50" aria-label="Compare before and after: ${cap}"></div><figcaption style="font-size:13px;color:var(--muted);margin-top:6px">${cap} · drag to compare</figcaption></figure>`).join('');
+ sheet.innerHTML=`<button class="x" id="mx" aria-label="Close project">×</button>
+ <div class="hd"><div class="k">${CATS[p.cat]} · ${p.place} · ${p.year}</div><h2 id="mtitle">${p.title}</h2></div>
+ <dl class="facts">${Object.entries(p.facts).map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+ <div class="body"><p>${p.intro}</p>
+  <div class="nums">${p.nums.map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('')}</div>
+  <div class="role"><b>My role · </b>${p.role}</div>
+  ${ba?`<h3>Before / After</h3><div class="bas">${ba}</div>`:''}
+  <h3>Key Points</h3><ul class="bul">${p.bul.map(b=>`<li>${b}</li>`).join('')}</ul>
+  ${p.gal.length?`<h3>Figures · click to enlarge</h3><div class="gal">${p.gal.map(([s,c],j)=>`<figure tabindex="0" data-j="${j}"><div class="f"><img src="img/${s}" alt="${c}" loading="lazy"></div><figcaption>${c}</figcaption></figure>`).join('')}</div>`:''}
+ </div>
+ <div class="navp"><button class="btn ghost" id="mprev">‹ ${P[(i+P.length-1)%P.length].title}</button><button class="btn solid" id="mnext">${P[(i+1)%P.length].title} ›</button></div>`;
+ modal.classList.add('open'); document.body.style.overflow='hidden'; modal.scrollTop=0;
+ try{history.replaceState(null,'','#'+p.id);}catch(e){}
+ sheet.querySelector('#mx').onclick=closeP; sheet.querySelector('#mprev').onclick=()=>openP((i+P.length-1)%P.length); sheet.querySelector('#mnext').onclick=()=>openP((i+1)%P.length);
+ sheet.querySelectorAll('.ba').forEach(el=>{const r=el.querySelector('input'); r.addEventListener('input',()=>el.style.setProperty('--p',r.value+'%'));});
+ sheet.querySelectorAll('.gal figure').forEach(f=>{const o=()=>openLB(+f.dataset.j); f.addEventListener('click',o); f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();o();}});});
+ sheet.querySelector('#mx').focus();
+}
+function closeP(){ modal.classList.remove('open'); document.body.style.overflow=''; try{history.replaceState(null,'','#work');}catch(e){} if(lastFocus) lastFocus.focus(); }
+modal.addEventListener('click',e=>{ if(e.target===modal) closeP(); });
+
+// lightbox
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg'), lbcap=document.getElementById('lbcap'); let lj=0;
+function openLB(j){ lj=j; const g=P[cur].gal[j]; lbimg.src='img/'+g[0]; lbimg.alt=g[1]; lbcap.textContent=g[1]+'  ('+(j+1)+' / '+P[cur].gal.length+')'; lb.classList.add('open'); document.getElementById('lbx').focus(); }
+const lbStep=d=>openLB((lj+d+P[cur].gal.length)%P[cur].gal.length);
+document.getElementById('lbx').onclick=()=>lb.classList.remove('open');
+document.getElementById('lbp').onclick=()=>lbStep(-1); document.getElementById('lbn').onclick=()=>lbStep(1);
+lb.addEventListener('click',e=>{ if(e.target===lb) lb.classList.remove('open'); });
+document.addEventListener('keydown',e=>{
+ if(lb.classList.contains('open')){ if(e.key==='Escape') lb.classList.remove('open'); if(e.key==='ArrowRight') lbStep(1); if(e.key==='ArrowLeft') lbStep(-1); return; }
+ if(modal.classList.contains('open')){ if(e.key==='Escape') closeP(); }
+});
+// nav highlight
+const links=[...document.querySelectorAll('header.nav nav a')];
+if('IntersectionObserver' in window){ const so=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); }),{rootMargin:'-45% 0px -50% 0px'});
+ ['work','about','experience','contact'].forEach(id=>so.observe(document.getElementById(id))); }
+// deep link
+const h=location.hash.slice(1); const di=P.findIndex(p=>p.id===h); if(di>=0) openP(di);
+</script>
+</body>
+</html>
