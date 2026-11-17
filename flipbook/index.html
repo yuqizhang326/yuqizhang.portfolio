@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuqi Zhang Planning Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a light, map-textured landscape flipbook; a lavender sidebar opens each project, continuation pages are image grids with small uppercase headings. */
+  --acc:#2C7A7B; --acc-d:#1D5B5C; --lav:#D3E8E6; --lav2:#EEF6F5; --ink:#33393B; --muted:#727B7D; --rule:#DCE5E4;
+  --font:"Poppins","Helvetica Neue",Arial,sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#253130;color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- page system ---------- */
+.page{width:1600px;height:1000px;background:#fff;position:relative;overflow:hidden;padding:56px 64px 54px}
+.folio{position:absolute;left:64px;right:64px;bottom:22px;display:flex;justify-content:space-between;font:500 11.5px/1 var(--font);color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.folio b{color:var(--acc);font-weight:600}
+.sh{font:600 14px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.ttl{font:600 26px/1.15 var(--font);letter-spacing:.04em;text-transform:uppercase;color:var(--acc)}
+p,.p{font:300 15.5px/1.6 var(--font);color:#4A5254}
+p b,.p b{font-weight:600;color:var(--ink)}
+.cap{font:300 13px/1.45 var(--font);color:var(--muted);margin-top:7px}
+.cap b{font-weight:600;color:var(--ink)}
+.g{display:grid;gap:22px}
+.g>*{min-height:0;min-width:0}
+.fig{background:#fff;border:1px solid var(--rule);overflow:hidden}
+.fig img{width:100%;height:100%;object-fit:contain}
+.fig.fcover img{object-fit:cover}
+.bul{list-style:none;display:grid;gap:7px}
+.bul li{font:300 14.5px/1.55 var(--font);color:#4A5254;padding-left:14px;position:relative}
+.bul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.bul li b{font-weight:600;color:var(--ink)}
+.stat .n{font:600 40px/1 var(--font);color:var(--acc);letter-spacing:-.01em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat .l{font:300 12.5px/1.4 var(--font);color:var(--muted);margin-top:4px}
+.ba{position:relative;height:330px;overflow:hidden;background:#eee}.ba img{width:100%;height:100%;object-fit:cover}.ba .lbl{position:absolute;left:10px;top:10px;font:600 12px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(40,48,50,.85);padding:7px 10px}.ba .lbl.after{background:var(--acc)}
+.chip{display:inline-block;font:600 11px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--acc-d);background:var(--lav);padding:6px 9px}
+table.t{border-collapse:collapse;width:100%;font:300 15px/1.4 var(--font);color:#4A5254}
+table.t th{text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--acc);padding:8px 10px}
+table.t td{border-bottom:1px solid var(--rule);padding:12px 12px;vertical-align:top;font-variant-numeric:tabular-nums}
+table.t td:first-child{font-weight:600;color:var(--ink)}
+table.t tr:nth-child(even) td{background:var(--lav2)}
+
+/* project opener: lavender sidebar */
+.proj{display:grid;grid-template-columns:400px 1fr;padding:0}
+.side{background:var(--lav2);border-left:14px solid var(--lav);padding:46px 34px 50px 34px;display:flex;flex-direction:column;gap:13px;height:1000px}
+.side .num{width:46px;height:46px;background:var(--acc);color:#fff;font:600 21px/46px var(--font);text-align:center}
+.side .ttl{font-size:23px;margin-top:4px}
+.side .sub{font:600 15px/1.35 var(--font);color:var(--ink)}
+.side .f{font:300 13px/1.5 var(--font);color:#4A5254}
+.side .f b{font-weight:500;color:var(--acc)}
+.main{padding:46px 56px 54px 44px;position:relative}
+.main .folio{left:44px;right:56px}
+
+/* cover */
+.cover{padding:0;display:grid;grid-template-columns:850px 750px;background:#fff url(img/amsmap.jpg) no-repeat 0 -5px/850px auto}
+.page.cover.endpg{display:block;background:#1D2A2A}
+.page.cover.endpg .ph{position:absolute;inset:0;height:1000px}
+.page.cover.endpg .ph{overflow:hidden}
+.page.cover.endpg .ph img{width:1600px;height:1000px;object-fit:cover;object-position:center 45%}
+.page.cover.endpg .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,30,30,.88) 0%,rgba(18,30,30,.72) 34%,rgba(18,30,30,0) 62%)}
+.page.cover.endpg .band{position:absolute;left:90px;top:0;bottom:0;width:640px;height:auto;background:none;padding:0;display:flex;flex-direction:column;justify-content:center}
+.page.cover.endpg h1{font:600 104px/1 var(--font);letter-spacing:.06em;color:#fff}
+.page.cover.endpg .nm{font:500 30px/1.2 var(--font);letter-spacing:.16em;color:#9FD3CF;margin-top:28px}
+.page.cover.endpg .band .p{font:300 18px/1.9 var(--font);color:#E6F0EF;margin-top:30px}
+.page.cover.endpg .band .p a{color:#E6F0EF}
+.page.cover.endpg .rule2{width:90px;height:4px;background:#9FD3CF;margin-top:30px}
+.page.cover.endpg .credit{position:absolute;right:16px;bottom:12px;font:400 12px/1 var(--font);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.cover .band{position:absolute;left:0;width:850px;top:330px;height:290px;background:rgba(206,229,226,.86);padding:62px 64px}
+.cover h1{font:600 46px/1.1 var(--font);letter-spacing:.14em;color:#3A4446}
+.cover .nm{font:500 28px/1.2 var(--font);letter-spacing:.14em;color:var(--acc);margin-top:14px}
+.cover .yr{font:600 16px/1 var(--font);letter-spacing:.12em;color:var(--acc);margin-top:22px}
+.cover .ph{grid-column:2;height:1000px}
+.cover .ph img{width:750px;height:1000px;object-fit:cover}
+.cover .tag{position:absolute;left:64px;bottom:56px;font:400 14px/1.7 var(--font);color:#4F5C5D;letter-spacing:.04em}
+
+/* about */
+.strip{position:absolute;top:0;bottom:0;width:120px;background:url(img/maptex.jpg) center/cover;border-left:1px solid var(--rule);border-right:1px solid var(--rule)}
+.big{font:600 40px/1 var(--font);color:var(--acc);letter-spacing:.02em}
+.sk{display:grid;gap:7px}
+.sk .row{display:grid;grid-template-columns:150px 1fr 44px;gap:12px;align-items:center;margin-top:9px}
+.sk .nm{font:300 14.5px/1.2 var(--font);color:#4A5254}
+.sk .pc{font:500 13px/1 var(--font);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.sk .bar{height:8px;background:#E1E8E7}
+.sk .bar i{display:block;height:8px;background:var(--acc)}
+.sk h4{font:600 14px/1.2 var(--font);color:var(--acc-d);margin-top:20px;letter-spacing:.04em;text-transform:uppercase}
+.xp{display:grid;gap:16px}.xp>div{border-left:3px solid var(--lav);padding-left:14px}.xp .yr{font:600 12px/1 var(--font);color:var(--acc);letter-spacing:.08em;margin-bottom:5px}
+
+/* contents */
+.toc{display:grid;grid-template-columns:1fr 1fr;gap:16px 56px;margin-top:22px}
+.toc .grp{grid-column:span 1;font:600 15px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin:6px 0 2px}
+.toc a{display:grid;grid-template-columns:118px 40px 1fr;gap:14px;align-items:start;text-decoration:none}
+.toc .th{width:118px;height:76px;border:1px solid var(--rule);overflow:hidden;background:#fff}
+.toc .th img{width:100%;height:100%;object-fit:cover}
+.toc .no{width:40px;height:40px;background:var(--acc);color:#fff;font:600 17px/40px var(--font);text-align:center}
+.toc .tt{font:600 13.5px/1.25 var(--font);letter-spacing:.04em;text-transform:uppercase;color:var(--acc)}
+.toc .ds{font:300 12px/1.35 var(--font);color:#5B5B63;margin-top:3px}
+.toc .yr{font:400 11.5px/1 var(--font);color:var(--muted);margin-top:4px}
+.toc a:hover .tt{color:var(--acc-d);text-decoration:underline}
+
+/* charts */
+.roomy p{font-size:17px} .roomy .bul li{font-size:16px} .roomy .stat .n{font-size:48px} .roomy .sh{font-size:15.5px;margin-top:6px}
+.chart text{font-family:var(--font);fill:var(--ink)}
+.chart .lab{font-size:12px;fill:var(--muted);font-weight:300}
+.chart .val{font-size:13px;font-weight:600}
+
+/* ---------- viewer (flipbook) ---------- */
+.ui{position:fixed;inset:0 0 auto 0;height:60px;display:flex;align-items:center;gap:14px;padding:0 18px;background:#1D2A2A;color:#fff;z-index:20;font-family:var(--font)}
+.ui .brand{font-weight:600;font-size:14px;letter-spacing:.12em;white-space:nowrap}
+.ui nav{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+.ui nav::-webkit-scrollbar{display:none}
+.ui nav button{font:500 13px/1 var(--font);color:#E6F0EF;background:transparent;border:1px solid #3D4E4E;border-radius:999px;padding:9px 14px;cursor:pointer;white-space:nowrap}
+.ui nav button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.ui nav button:hover{border-color:#8FBFBD}
+.ui .count{font:500 13px/1 var(--font);color:#AFC3C2;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ui .tb{font:500 13px/1 var(--font);color:#fff;background:#344545;border:0;border-radius:6px;padding:9px 12px;cursor:pointer;white-space:nowrap}
+button:focus-visible,a:focus-visible{outline:3px solid #F2C14E;outline-offset:2px}
+#book{display:none}
+.stage{position:fixed;inset:60px 0 0 0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at center,#33403F 0%,#1E2727 75%)}
+.viewer{position:relative;height:1000px;transform-origin:center center;flex:none;perspective:5200px}
+.slot{position:absolute;top:0;width:1600px;height:1000px;overflow:hidden;background:#fff;box-shadow:0 22px 60px rgba(0,0,0,.45);cursor:pointer}
+.slot.empty{background:transparent;box-shadow:none;cursor:default}
+.slot.l{left:0}.slot.r{left:1600px}
+.single .slot.l{display:none}.single .slot.r{left:0}
+.slot>.page,.face>.page{position:absolute;left:0;top:0}
+.spine{position:absolute;left:1600px;top:0;width:90px;margin-left:-45px;height:1000px;z-index:4;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.10) 42%,rgba(0,0,0,.22) 50%,rgba(0,0,0,.10) 58%,rgba(0,0,0,0) 100%)}
+.single .spine{display:none}
+.leaf{position:absolute;top:0;width:1600px;height:1000px;transform-style:preserve-3d;z-index:6;transition:transform .95s cubic-bezier(.42,.08,.28,1)}
+.leaf .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;background:#fff}
+.leaf .back{transform:rotateY(180deg)}
+.leaf .face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .95s}
+.leaf.turning .front::after{opacity:1;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,0) 30%)}
+.leaf.turning .back::after{opacity:1;background:linear-gradient(270deg,rgba(0,0,0,.18),rgba(0,0,0,0) 30%)}
+.arrow{position:fixed;top:50%;transform:translateY(-50%);z-index:15;width:50px;height:50px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#1D2A2A;font:600 24px/1 var(--font);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.arrow.prev{left:16px}.arrow.next{right:16px}
+.arrow:disabled{opacity:.3;cursor:default}
+.overlay{position:fixed;inset:60px 0 0 0;background:#1D2A2Af2;z-index:30;overflow:auto;padding:28px;display:none}
+.overlay.open{display:block}
+.overlay .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.overlay .thb{cursor:pointer;background:none;border:0;text-align:left;color:#fff;font:500 13px/1.3 var(--font)}
+.overlay .mini{width:240px;height:150px;overflow:hidden;position:relative;border-radius:3px;outline:1px solid #3D4E4E}
+.overlay .mini .page{transform:scale(.15);transform-origin:0 0;position:absolute;left:0;top:0}
+.overlay .thb span{display:block;margin-top:8px}
+@media (prefers-reduced-motion: reduce){.leaf{transition:none}}
+@media (max-width:700px){.ui .brand{display:none}.arrow{width:40px;height:40px;font-size:20px}}
+
+@page{size:1600px 1000px;margin:0}
+@media print{
+  body{background:#fff}
+  .ui,.arrow,.overlay{display:none!important}
+  .stage{position:static;display:block;background:none}
+  .viewer{display:none}
+  #book{display:block!important}
+  #book .page{position:relative;break-after:page;page-break-after:always}
+}
+</style>
+</head>
+<body>
+
+<div class="ui" role="toolbar" aria-label="Portfolio navigation">
+  <div class="brand">YUQI ZHANG</div>
+  <nav id="catnav" aria-label="Sections"></nav>
+  <span class="count" id="count">1 / 1</span>
+  <a class="tb" href="../" style="text-decoration:none">← Website</a>
+  <button class="tb" id="modebtn">Single page</button>
+  <button class="tb" id="gridbtn" aria-expanded="false">All pages</button>
+</div>
+<button class="arrow prev" id="prev" aria-label="Previous page">‹</button>
+<button class="arrow next" id="next" aria-label="Next page">›</button>
+<div class="overlay" id="overlay"><div class="thumbs" id="thumbs"></div></div>
+
+<main class="stage" id="stage"><div class="viewer" id="viewer"></div><div class="book" id="book">
+
+<!-- ===== COVER ===== -->
+<section class="page cover" data-cat="cover" data-title="Cover" id="cover">
+  <div class="band">
+    <h1>URBAN PLANNING<br>PORTFOLIO</h1>
+    <div class="nm">YUQI ZHANG</div>
+    <div class="yr">2026</div>
+  </div>
+  <div class="tag" style="background:rgba(255,255,255,.85);padding:10px 14px;left:50px">Master of City Planning · University of Pennsylvania<br>Transportation · Spatial Analysis · Parks &amp; Public Space</div>
+  <div class="ph"><img src="img/cover.jpg" alt="Benjamin Franklin Parkway and the Philadelphia skyline seen from the Art Museum steps"></div>
+</section>
+
+<!-- ===== ABOUT + SKILLS ===== -->
+<section class="page" data-cat="contents" data-title="About &amp; skills" id="about">
+  <div class="g" style="grid-template-columns:1.15fr 1fr 0.85fr;gap:60px;height:880px">
+    <div>
+      <div class="big">ABOUT</div>
+      <p style="margin-top:18px">I am a Master of City Planning candidate at the University of Pennsylvania, concentrating in Transportation and Sustainable Infrastructure Planning, with bachelor's degrees in Parks, Recreation and Sport Management (Arizona State University) and Human Geography and Urban &amp; Rural Planning (Hainan University).</p>
+      <p style="margin-top:12px">My work connects spatial data to planning decisions: screening park land with GIS, modeling where growth and flood risk overlap, optimizing delivery networks, and turning resident surveys into recommendations, with public agencies and planning firms in the United States and China.</p>
+      <div class="big" style="font-size:24px;margin-top:30px">EDUCATION</div>
+      <div class="g" style="gap:10px;margin-top:12px">
+        <p><b>University of Pennsylvania</b> · Master of City Planning, 2025–2027 (expected) · Graduate Certificate in GIS and Spatial Analysis (in progress)</p>
+        <p><b>Arizona State University</b> · B.S. Parks, Recreation and Sport Management · GPA 4.0</p>
+        <p><b>Hainan University</b> · B.M. Human Geography and Urban &amp; Rural Planning · GPA 3.91</p>
+      </div>
+      <div class="big" style="font-size:24px;margin-top:28px">CONTACT</div>
+      <div class="p" style="margin-top:12px;line-height:1.9">(267) 709-0524<br>yqizhang@upenn.edu<br><a href="https://www.linkedin.com/in/yuqi-zhang-cpln">linkedin.com/in/yuqi-zhang-cpln</a><br>Philadelphia, PA</div>
+    </div>
+    <div>
+      <div class="big">SKILLS</div>
+      <div class="sk" style="margin-top:6px"><h4>GIS &amp; Spatial Analysis</h4><div class="row"><span class="nm">ArcGIS Pro</span><div class="bar"><i style="width:95%"></i></div><span class="pc">95%</span></div><div class="row"><span class="nm">ArcGIS Online</span><div class="bar"><i style="width:90%"></i></div><span class="pc">90%</span></div><h4>Data &amp; Modeling</h4><div class="row"><span class="nm">R</span><div class="bar"><i style="width:90%"></i></div><span class="pc">90%</span></div><div class="row"><span class="nm">Python</span><div class="bar"><i style="width:80%"></i></div><span class="pc">80%</span></div><div class="row"><span class="nm">Excel</span><div class="bar"><i style="width:95%"></i></div><span class="pc">95%</span></div><div class="row"><span class="nm">SPSS</span><div class="bar"><i style="width:85%"></i></div><span class="pc">85%</span></div><h4>Transportation Modeling</h4><div class="row"><span class="nm">PTV Visum</span><div class="bar"><i style="width:85%"></i></div><span class="pc">85%</span></div><div class="row"><span class="nm">PTV Vissim</span><div class="bar"><i style="width:85%"></i></div><span class="pc">85%</span></div><div class="row"><span class="nm">Synchro</span><div class="bar"><i style="width:90%"></i></div><span class="pc">90%</span></div><h4>Design &amp; Visualization</h4><div class="row"><span class="nm">Adobe Illustrator</span><div class="bar"><i style="width:90%"></i></div><span class="pc">90%</span></div><div class="row"><span class="nm">Adobe InDesign</span><div class="bar"><i style="width:85%"></i></div><span class="pc">85%</span></div><div class="row"><span class="nm">AutoCAD</span><div class="bar"><i style="width:90%"></i></div><span class="pc">90%</span></div></div>
+    </div>
+    <div>
+      <div class="big" style="font-size:24px">EXPERIENCE</div>
+      <div class="xp" style="margin-top:14px">
+        <div><div class="yr">2026</div><p><b>Fairfax County Park Authority</b><br>Planner Intern, Long Range Planning</p></div>
+        <div><div class="yr">2025</div><p><b>Hefei Garden Group</b><br>Integrated Assistant Intern</p></div>
+        <div><div class="yr">2022, 2023</div><p><b>Hefei Binhu New District Construction Management</b><br>Project Planner Intern</p></div>
+        <div><div class="yr">2022</div><p><b>Hefei Urban Planning and Design Institute</b><br>Planner Intern</p></div>
+      </div>
+      <div class="big" style="font-size:24px;margin-top:30px">LANGUAGES</div>
+      <p style="margin-top:12px">Mandarin (native) · English (fluent)</p>
+    </div>
+  </div>
+  <div class="folio"><span>Yuqi Zhang · Urban Planning Portfolio</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== CONTENTS ===== -->
+<section class="page" data-cat="contents" data-title="Table of contents" id="contents">
+  <div class="big">TABLE OF CONTENTS</div>
+  <div class="toc" id="toc"></div>
+  <div class="folio"><span>Yuqi Zhang · Urban Planning Portfolio</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .1 PORT RICHMOND ===== -->
+<section class="page proj" data-cat="studios" data-title="Port Richmond 2045" data-project="Port Richmond 2045 Neighborhood Plan" data-desc="Multimodal transportation chapter · Philadelphia, PA" data-year="Spring 2026" data-thumb="img/pr_crash.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Transportation &amp; Community Development</div>
+    <div class="sub">Port Richmond 2045 Neighborhood Plan · Philadelphia, PA</div>
+    <div class="f"><b>Year</b> – Spring 2026</div>
+    <div class="f"><b>Project Type</b> – MCP Studio I, community development plan for the Port Richmond CDC</div>
+    <div class="f"><b>Instructor</b> – Katie Levesque</div>
+    <div class="f"><b>Team</b> – M. Amole, G. Britt, D. Caddle, A. Duque, T. Saltzman, Y. Zhang, Y. Zhong</div>
+    <div class="f"><b>Skills Used</b> – ArcGIS Pro, Census/ACS analysis, street section design, Adobe Illustrator, InDesign</div>
+    <div class="f"><b>Project Overview</b> – Port Richmond is a historic industrial and rowhouse neighborhood cut off from the Delaware waterfront by I-95, freight rail and truck traffic. The plan covers culture, industry, transportation, housing and greenspace.</div>
+    <div class="f"><b>My Role</b> – Led the transportation chapter: existing conditions, four objectives with costed strategies, maps and street sections; edited and integrated the final report.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:26px">
+      <div><div class="sh">Existing Condition · Commuting</div>
+        <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:16px">
+          <div class="stat"><div class="n">&gt;50%</div><div class="l">commuters drive alone, vs. 45% citywide (2023)</div></div>
+          <div class="stat"><div class="n">2%</div><div class="l">work remotely, vs. 14% citywide</div></div>
+          <div class="stat"><div class="n">1</div><div class="l">Indego bike-share station</div></div>
+        </div>
+        <div class="fig" style="height:330px;margin-top:20px;border:0"><img src="img/pr_mode.jpg" alt="Commuting mode share pie chart page"></div>
+      </div>
+      <div><div class="sh">Fatal Crash Density</div><div class="fig" style="height:470px;border:0"><img src="img/pr_crash.jpg" alt="Fatal crash density map"></div></div>
+    </div>
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:26px;margin-top:22px">
+      <ul class="bul">
+        <li>Driving dominates; carpooling is twice the citywide rate while transit use is only at parity.</li>
+        <li>Walking and biking are inconsistent: major roads prioritize trucks and the bike network is fragmented.</li>
+      </ul>
+      <ul class="bul">
+        <li>Aramingo and Allegheny Avenues and four other segments are on Philadelphia's High Injury Network.</li>
+        <li>Wide streets, long crossings, speeding and turning trucks drive the risk.</li>
+      </ul>
+    </div>
+    <div class="folio"><span><b>.1</b> Port Richmond 2045</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page" data-cat="studios" data-title="Port Richmond: street safety">
+  <div class="g" style="grid-template-columns:1.15fr 1fr;gap:34px">
+    <div>
+      <div class="sh">Objective T.1 · Aramingo Avenue, Existing</div>
+      <div class="fig" style="height:190px;border:0"><img src="img/pr_sec_cur.jpg" alt="Existing Aramingo Avenue street section"></div>
+      <p class="cap">4 travel lanes, 1 turn lane and 2 narrow, unprotected bike lanes.</p>
+      <div class="sh" style="margin-top:26px">Objective T.1 · Aramingo Avenue, Proposed</div>
+      <div class="fig" style="height:210px;border:0"><img src="img/pr_sec_prop.jpg" alt="Proposed Aramingo Avenue street section with median and protected bike lanes"></div>
+      <p class="cap">Narrower lanes, a planted median, curb-separated bike lanes and wider sidewalks.</p>
+      <ul class="bul" style="margin-top:24px">
+        <li>Narrower lanes reduce speeds; the median gives crossing pedestrians a refuge and adds shade.</li>
+        <li>Traffic calming first near schools and high-risk intersections; clearer truck routes keep freight off residential streets.</li>
+        <li>Each strategy lists programs, partners, timeline and cost for the Port Richmond CDC.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sh">Objective T.2 · Crosswalk with Proposed Curb Bump-Outs</div>
+      <div class="fig" style="height:600px;border:0"><img src="img/pr_cross.jpg" alt="Existing crosswalk and rendering with curb bump-outs"></div>
+      <ul class="bul" style="margin-top:18px">
+        <li>Curb extensions shorten crossing distance and slow turning vehicles at high-risk intersections.</li>
+        <li>Sidewalk repair, lighting and ADA ramps on routes to SEPTA stops and schools.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="folio"><span><b>.1</b> Port Richmond 2045</span><span class="pn"></span></div>
+</section>
+
+<section class="page" data-cat="studios" data-title="Port Richmond: biking and transit">
+  <div class="g" style="grid-template-columns:1fr 1.05fr;gap:36px">
+    <div>
+      <div class="sh">Objective T.3 · Existing Bike Infrastructure &amp; Network Gaps</div>
+      <div class="fig" style="height:470px;border:0"><img src="img/pr_bike.jpg" alt="Existing bike network map of Port Richmond"></div>
+      <ul class="bul" style="margin-top:14px">
+        <li>Upgrade painted lanes to flex-post, parking-protected or raised bikeways on key corridors.</li>
+        <li>Close gaps toward transit stops, commercial corridors, Pulaski Park and the Delaware River trail.</li>
+      </ul>
+      <div class="sh" style="margin-top:22px">Four Transportation Objectives</div>
+      <div class="g" style="grid-template-columns:1fr 1fr;gap:12px 20px">
+        <div><div class="chip">T.1</div><p style="margin-top:5px"><b>Roadway safety.</b> Calm traffic, clarify truck routes.</p></div>
+        <div><div class="chip">T.2</div><p style="margin-top:5px"><b>Walking.</b> Safer crossings, access to transit.</p></div>
+        <div><div class="chip">T.3</div><p style="margin-top:5px"><b>Biking.</b> Protected, connected network.</p></div>
+        <div><div class="chip">T.4</div><p style="margin-top:5px"><b>Fewer solo car trips.</b> SEPTA 25, 60 and the G.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="sh">Before / After · Elevated Crosswalk (T.2)</div>
+      <div class="g" style="grid-template-columns:1fr 1fr;gap:12px">
+        <div class="ba"><img src="img/pr_xw_before.jpg" alt="Existing crosswalk on Aramingo Avenue"><span class="lbl">Before</span></div>
+        <div class="ba"><img src="img/pr_xw_after.jpg" alt="Rendering of a raised, elevated crosswalk"><span class="lbl after">After</span></div>
+      </div>
+      <p class="cap">A raised crossing brings pedestrians to sidewalk level and slows turning traffic.</p>
+      <div class="sh" style="margin-top:20px">Before / After · Castor Avenue Bike Lane (T.3)</div>
+      <div class="g" style="grid-template-columns:1fr 1fr;gap:12px">
+        <div class="ba"><img src="img/pr_bk_before.jpg" alt="Existing Castor Avenue bike path"><span class="lbl">Before</span></div>
+        <div class="ba"><img src="img/pr_bk_after.jpg" alt="Rendering of a separated, resurfaced bike lane"><span class="lbl after">After</span></div>
+      </div>
+      <p class="cap">Resurfaced, separated lanes with markings and planted buffers on Castor Avenue.</p>
+    </div>
+  </div>
+  <div class="folio"><span><b>.1</b> Port Richmond 2045</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .2 AMSTERDAM ===== -->
+<section class="page proj" data-cat="studios" data-title="Haven-Stad, Amsterdam" data-project="Haven-Stad, Amsterdam" data-desc="Blue-green neighborhood living rooms · in progress" data-year="Fall 2026" data-thumb="img/ams_rooms.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Urban Design &amp; Industrial Transition</div>
+    <div class="sub">Haven-Stad: Reimagining Amsterdam's Western Harbor</div>
+    <div class="f"><b>Year</b> – Fall 2026 (in progress)</div>
+    <div class="f"><b>Project Type</b> – MCP Studio II, district plan with fieldwork in Amsterdam (Sept. 26 – Oct. 2, 2026)</div>
+    <div class="f"><b>Instructor</b> – Gregory Haley</div>
+    <div class="f"><b>Team</b> – K. Knox, W. Nay, S. Saint-Phard, Y. Zhang</div>
+    <div class="f"><b>Skills Used</b> – Site analysis, block typology, land-use planning, Adobe Illustrator</div>
+    <div class="f"><b>Project Overview</b> – Haven-Stad will turn port and light-industrial land into a dense district. Our concept, <i>Buurthuiskamers</i> ("neighborhood living rooms"), organizes it around green and blue public space, active mobility and industry that stays.</div>
+    <div class="f"><b>My Role</b> – Port history, street lighting continuity near bridges and tunnels; now block typologies and green space for mixed residential–industrial blocks.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:24px">
+      <div><div class="sh">Site</div><div class="fig" style="height:330px"><img src="img/ams_cover.jpg" alt="Haven-Stad site photo and title slide"></div></div>
+      <div><div class="sh">Four Moves</div><div class="fig" style="height:330px"><img src="img/ams_frame.jpg" alt="Improve active travel, connect green corridors, create scales of blue space, add dense urban centers"></div></div>
+    </div>
+    <div class="g" style="grid-template-columns:repeat(3,1fr);gap:22px;margin-top:26px">
+      <div class="stat"><div class="n">170,000</div><div class="l">social rental homes, with 122,500 active home seekers</div></div>
+      <div class="stat"><div class="n">11 yrs</div><div class="l">average wait for social housing</div></div>
+      <div class="stat"><div class="n">56%</div><div class="l">of Amsterdam residents bike to work</div></div>
+    </div>
+    <ul class="bul" style="margin-top:22px;grid-template-columns:1fr 1fr;gap:8px 30px">
+      <li>The waterfront is industrial and the public realm turns away from it.</li>
+      <li>Strong green nodes nearby are poorly connected to the site.</li>
+      <li>Few bike-only lanes: cyclists share space with fast mopeds.</li>
+      <li>Growth risks displacing city-serving businesses residents rely on.</li>
+    </ul>
+    <div class="folio"><span><b>.2</b> Haven-Stad</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page" data-cat="studios" data-title="Haven-Stad: structure and land use">
+  <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:24px">
+    <div><div class="sh">City- and Block-Scale "Living Rooms"</div><div class="fig" style="height:300px"><img src="img/ams_rooms.jpg" alt="City and block scale living rooms"></div></div>
+    <div><div class="sh">Street Hierarchy</div><div class="fig" style="height:300px"><img src="img/ams_streets.jpg" alt="Street hierarchy map"></div></div>
+    <div><div class="sh">Draft Land-Use Plan</div><div class="fig" style="height:300px"><img src="img/ams_plan.jpg" alt="Draft land use plan"></div></div>
+    <div><div class="sh">Eco-Industry Corridor</div><div class="fig" style="height:300px"><img src="img/ams_ind.jpg" alt="Eco-industry corridor"></div></div>
+    <div><div class="sh">Industrial Mixed-Use Section</div><div class="fig" style="height:300px"><img src="img/ams_indsec.jpg" alt="Industrial mixed-use section"></div></div>
+    <div><div class="sh">Residential–Commercial Section</div><div class="fig" style="height:300px"><img src="img/ams_ressec.jpg" alt="Residential commercial section"></div></div>
+  </div>
+  <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:20px">
+    <ul class="bul"><li><b>Block typology (my study):</b> ~86 × 46 m perimeter blocks, ~12 m housing bars, ~15 m courtyards, 3 m mid-block passages.</li></ul>
+    <ul class="bul"><li><b>Industry that stays:</b> 12–20 m production wings near rail, stacked so light industry and homes share one district.</li></ul>
+    <ul class="bul"><li><b>Next phase:</b> eco-industrial corridors, circular production and residual-heat reuse. Dimensions are studio explorations.</li></ul>
+  </div>
+  <div class="folio"><span><b>.2</b> Haven-Stad</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .3 FAIRFAX ===== -->
+<section class="page proj" data-cat="parks" data-title="Fairfax County Park Authority" data-project="Fairfax County Park Authority" data-desc="Long Range Planning internship · Fairfax, VA" data-year="Summer 2026" data-thumb="img/ff_franconia.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Long-Range Park Planning</div>
+    <div class="sub">Fairfax County Park Authority · Long Range Planning Section</div>
+    <div class="f"><b>Year</b> – Summer 2026</div>
+    <div class="f"><b>Project Type</b> – Professional internship, Planner Intern</div>
+    <div class="f"><b>Supervisor</b> – Stephanie Cornejo</div>
+    <div class="f"><b>Projects</b> – Park Classification Analysis (with Francisco Ibarra) · Park Access Level of Service · Needs Assessment Survey &amp; Equity Analysis · Kids Kit youth engagement</div>
+    <div class="f"><b>Skills Used</b> – ArcGIS Pro, R, Excel, policy benchmarking, survey analysis, engagement design</div>
+    <div class="f"><b>Project Overview</b> – Supported long-range park planning through policy research, GIS and data analysis, and planning initiatives for the county's park system.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:24px">
+      <div><div class="sh">Park Classification · Research Question</div>
+        <p>The Comprehensive Plan defines <b>Resource-Based Parks</b> as parks managed primarily to preserve significant environmental resources. Are there <b>Local Parks</b> that better fit that definition?</p>
+        <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px">
+          <div class="stat"><div class="n">296</div><div class="l">Local Parks screened</div></div>
+          <div class="stat"><div class="n">22</div><div class="l">candidates for potential reclassification</div></div>
+          <div class="stat"><div class="n">182</div><div class="l">stream-valley parcels with no RPA reviewed</div></div>
+        </div>
+        <div class="sh" style="margin-top:28px">Methodology</div>
+        <ul class="bul">
+          <li><b>Policy review:</b> Comprehensive Plan definitions became evaluation criteria.</li>
+          <li><b>GIS overlay:</b> park boundaries intersected with the Resource Protection Area (RPA) layer to compute RPA share.</li>
+          <li><b>Benchmark:</b> non-zero Resource-Based Parks have a median RPA share of 72.88% (IQR 45.09–87.27%), the scale used to grade Local Parks.</li>
+          <li><b>Qualitative review:</b> development intensity, facilities and function; two screening methods compared.</li>
+          <li><b>Stream valleys:</b> 182 parcels without RPA checked for drainage, sewer, trail and SWM easements.</li>
+        </ul>
+      </div>
+      <div class="g" style="grid-template-rows:1fr 1fr;gap:16px">
+        <div><div class="fig" style="height:390px"><img src="img/ff_franconia.jpg" alt="Franconia Forest park profile"></div><div class="cap"><b>Franconia Forest · 6.7 ac · 72.92% RPA.</b> Undeveloped and wooded: a strong candidate.</div></div>
+        <div><div class="fig" style="height:390px"><img src="img/ff_eakin.jpg" alt="Eakin-Mantua park profile"></div><div class="cap"><b>Eakin–Mantua · 72.2 ac · 94% RPA.</b> Active fields and courts, so RPA alone does not justify reclassification.</div></div>
+      </div>
+    </div>
+    <div class="folio"><span><b>.3</b> Fairfax County Park Authority</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page roomy" data-cat="parks" data-title="Fairfax: access level of service">
+  <div class="g" style="grid-template-columns:420px 1fr;gap:40px">
+    <div>
+      <div class="sh">Park Access Level of Service</div>
+      <div class="ttl" style="font-size:24px">From acres per 1,000 residents to minutes of access</div>
+      <p style="margin-top:16px">I benchmarked access standards across nine peer jurisdictions: Arlington, Loudoun, Prince William and Alexandria (VA), Montgomery and Prince George's (MD), Gwinnett (GA), Mecklenburg (NC) and Washington, D.C. Alexandria had no published access standard to compare.</p>
+      <p style="margin-top:12px">Each recommendation combines peer practice, planning logic and resident travel preferences from the 2026 Needs Assessment (Q6), with units, target populations and service areas reconciled before comparison.</p>
+      <div class="g" style="grid-template-columns:1fr 1fr;gap:18px;margin-top:22px">
+        <div class="stat"><div class="n">56%</div><div class="l">prefer a local park within a 10-minute walk</div></div>
+        <div class="stat"><div class="n">74%</div><div class="l">would travel 15+ minutes to a district park</div></div>
+      </div>
+      <p class="cap" style="margin-top:18px">Draft recommendations for discussion, not adopted county standards.</p>
+    </div>
+    <div>
+      <div class="sh">Decision Matrix (excerpt of 21 park and facility types)</div>
+      <table class="t">
+        <thead><tr><th>Facility</th><th>Urban</th><th>Suburban</th><th>Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Local parks</td><td>5-min walk</td><td>10-min walk</td><td>Arlington density-based walk standards; D.C. 10-min walk</td></tr>
+          <tr><td>Playgrounds</td><td>5-min walk</td><td>10-min walk</td><td>Everyday family amenity; Arlington 5/10-min walk</td></tr>
+          <tr><td>Paved trail access</td><td>5-min walk</td><td>10-min walk</td><td>Linear network; Arlington urban/suburban split</td></tr>
+          <tr><td>Basketball, tennis, pickleball</td><td>10-min walk</td><td>10-min drive</td><td>Routine neighborhood recreation</td></tr>
+          <tr><td>District parks</td><td>10-min drive</td><td>15-min drive</td><td>Prince William 10–20-min drive; Gwinnett 2–4 mi</td></tr>
+          <tr><td>Rectangular &amp; diamond fields</td><td>10-min drive</td><td>15-min drive</td><td>Programmed league facilities</td></tr>
+          <tr><td>Swimming pools</td><td>15-min drive</td><td>20-min drive</td><td>73% would travel 15+ min to recreation centers</td></tr>
+          <tr><td>Skate parks, spraygrounds</td><td>15-min drive</td><td>20-min drive</td><td>Specialized destinations; population-based peers</td></tr>
+          <tr><td>Countywide parks, nature centers</td><td>20-min drive</td><td>20–30-min drive</td><td>56% would travel 30+ min</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="folio"><span><b>.3</b> Fairfax County Park Authority</span><span class="pn"></span></div>
+</section>
+
+<section class="page" data-cat="parks" data-title="Fairfax: needs assessment">
+  <div class="sh">2026 Needs Assessment · Survey &amp; Equity Analysis</div>
+  <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:4px">
+    <div><div class="fig" style="height:390px"><img src="img/ff_q8.jpg" alt="Why residents visit parks"></div><div class="cap"><b>Q8 Why residents visit parks.</b> Convenient hours lead (67.5%).</div></div>
+    <div><div class="fig" style="height:390px"><img src="img/ff_q9.jpg" alt="What makes residents choose a program"></div><div class="cap"><b>Q9 Choosing a program.</b> Affordability (75.4%) and convenient times (68.7%).</div></div>
+    <div><div class="fig" style="height:390px"><img src="img/ff_q11.jpg" alt="Barriers to park use"></div><div class="cap"><b>Q11 Barriers.</b> Distance and not knowing what is offered top the list.</div></div>
+  </div>
+  <div class="g" style="grid-template-columns:1fr 480px;gap:30px;margin-top:22px">
+    <div><div class="fig" style="height:380px"><img src="img/ff_q8race.jpg" alt="Reasons for visiting parks by race heatmap"></div><div class="cap"><b>Cross-tabulations by race, gender, age and income</b> for every multiple-choice question.</div></div>
+    <div>
+      <div class="sh">My Contributions</div>
+      <ul class="bul">
+        <li>Cleaned and organized 600+ statistically valid survey responses.</li>
+        <li>Built demographic cross-tabs in R for rating, multiple-choice, ranking and budget questions.</li>
+        <li>Produced an Excel workbook (overall, race, gender, age, income) and a chart set for each question.</li>
+        <li>86.8% of respondents rated park quality good or excellent.</li>
+      </ul>
+      <p class="cap" style="margin-top:14px">Percentages describe answers to specific questions; they are not causal estimates.</p>
+    </div>
+  </div>
+  <div class="folio"><span><b>.3</b> Fairfax County Park Authority</span><span class="pn"></span></div>
+</section>
+
+<section class="page" data-cat="parks" data-title="Fairfax: Kids Kit">
+  <div class="g" style="grid-template-columns:1fr 380px;gap:36px">
+    <div>
+      <div class="sh">Kids Kit · Children's Engagement in Planning</div>
+      <table class="t" style="font-size:16px">
+        <thead><tr><th style="width:140px">Stage</th><th>Ages 4–6</th><th>Ages 7–11</th><th>Ages 12–17</th></tr></thead>
+        <tbody>
+          <tr><td>Learn</td><td>Storybooks, picture cards</td><td>Games, videos, simple mapping</td><td>Mini workshops on zoning and land use</td></tr>
+          <tr><td>Explore</td><td>Guided walks, sticker maps</td><td>Photovoice, City as Play, neighborhood mapping</td><td>Walkability and accessibility audits</td></tr>
+          <tr><td>Identify problems</td><td>Happy/sad stickers, emoji voting</td><td>Problem mapping, favorite/least favorite place</td><td>Safety audit, issue prioritization</td></tr>
+          <tr><td>Imagine</td><td>Draw your dream park</td><td>LEGO model building</td><td>Future City workshop, vision board</td></tr>
+          <tr><td>Co-design</td><td>Arrange play elements with blocks</td><td>Design charrette, redesign a park</td><td>Compare and critique alternatives</td></tr>
+          <tr><td>Discuss</td><td>Gallery walk</td><td>Poster session, peer feedback</td><td>Mock town meeting, role-play</td></tr>
+          <tr><td>Influence</td><td>Public art display</td><td>Letters to officials, videos</td><td>Present to planners or council</td></tr>
+          <tr><td>Reflect</td><td>"What changed?" photos</td><td>Planner feedback</td><td>Follow-up meetings, journals</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="ttl" style="font-size:22px">Children as co-designers of public space</div>
+      <p style="margin-top:14px">A workbook that lets children take part in planning while their parents join public meetings. Activities are matched to three age groups across eight stages, from learning what planning is to seeing how their ideas changed a decision.</p>
+      <div class="sh" style="margin-top:22px">Meet Kids Where They Are</div>
+      <ul class="bul">
+        <li>Schools and after-school programs</li>
+        <li>Parks and playgrounds, on site</li>
+        <li>Community centers and events</li>
+        <li>Community walks and field visits</li>
+      </ul>
+      <div class="sh" style="margin-top:22px">Planner's Role</div>
+      <p>Explain concepts in child-friendly language, listen without leading, make sure every child speaks, and show how ideas influenced decisions.</p>
+      <p class="cap" style="margin-top:14px">A recommended framework; activities have not yet been piloted.</p>
+    </div>
+  </div>
+  <div class="folio"><span><b>.3</b> Fairfax County Park Authority</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .4 WENCHANG ===== -->
+<section class="page proj" data-cat="parks" data-title="Tropical Botanical Garden, Wenchang" data-project="Tropical Botanical Garden, Wenchang" data-desc="Park planning and facility siting · Hainan, China" data-year="2024" data-thumb="img/wc_cafe.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Park Planning &amp; Facility Siting</div>
+    <div class="sub">Green Rhythm, Coconut Shade: Tropical Botanical Garden · Wenchang, Hainan</div>
+    <div class="f"><b>Year</b> – April – June 2024</div>
+    <div class="f"><b>Project Type</b> – Computer Cartography final design project, Hainan University</div>
+    <div class="f"><b>Advisor</b> – Assoc. Prof. Keyu Chen</div>
+    <div class="f"><b>Team</b> – Core member, team of five</div>
+    <div class="f"><b>Skills Used</b> – ArcGIS raster and accessibility analysis, AutoCAD, park design standards</div>
+    <div class="f"><b>Project Overview</b> – A 349,122 m² tropical botanical garden in northwest Wenchang beside Datan Village, combining research, science education, Hainan plant culture and recreation. Facilities were sized from the national park design code and sited by visitor demand.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:28px">
+      <div>
+        <div class="sh">Capacity &amp; Facility Requirements</div>
+        <div class="g" style="grid-template-columns:1fr 1fr;gap:18px 22px">
+          <div class="stat"><div class="n">13,965</div><div class="l">visitor capacity (349,122 m² ÷ 25 m² per person)</div></div>
+          <div class="stat"><div class="n">279</div><div class="l">restroom stalls required (2% of capacity)</div></div>
+          <div class="stat"><div class="n">2,793+</div><div class="l">seats required (20–30% of capacity)</div></div>
+          <div class="stat"><div class="n">≤175</div><div class="l">car parking spaces (≤1,746 bicycle)</div></div>
+        </div>
+        <div class="sh" style="margin-top:26px">"1 + 3" Layout · Six Zones</div>
+        <svg class="chart" viewBox="0 0 520 220" width="100%" role="img" aria-label="Zone areas in square meters">
+          <g transform="translate(190,8)">
+            <rect x="0" y="0" width="300" height="22" fill="#2C7A7B"/><text class="val" x="306" y="16">78,941</text><text class="lab" x="-8" y="16" text-anchor="end">Rainforest exploration (core)</text>
+            <rect x="0" y="34" width="240" height="22" fill="#5FA3A3"/><text class="val" x="246" y="50">63,101</text><text class="lab" x="-8" y="50" text-anchor="end">Hainan native plants</text>
+            <rect x="0" y="68" width="222" height="22" fill="#9CC8C6"/><text class="val" x="228" y="84">58,321</text><text class="lab" x="-8" y="84" text-anchor="end">Entry and visitor services</text>
+            <rect x="0" y="102" width="207" height="22" fill="#5FA3A3"/><text class="val" x="213" y="118">54,452</text><text class="lab" x="-8" y="118" text-anchor="end">University research base</text>
+            <rect x="0" y="136" width="175" height="22" fill="#5FA3A3"/><text class="val" x="181" y="152">46,121</text><text class="lab" x="-8" y="152" text-anchor="end">Science education</text>
+            <rect x="0" y="170" width="39" height="22" fill="#9CC8C6"/><text class="val" x="45" y="186">10,261</text><text class="lab" x="-8" y="186" text-anchor="end">Children's area</text>
+          </g>
+        </svg>
+        <p class="cap">Zone area (m²). One core rainforest zone is surrounded by three themed education zones. Paths: 6 m main, 4 m secondary, 1.5–3 m themed trails.</p>
+      </div>
+      <div>
+        <div class="sh">Team Hand Drawings</div>
+        <div class="g" style="gap:14px">
+          <div><div class="fig" style="height:300px"><img src="img/wc_cafe.jpg" alt="Hand drawing of the visitor center cafe interior"></div><div class="cap"><b>Visitor center café</b>, interior sketches.</div></div>
+          <div><div class="fig" style="height:300px"><img src="img/wc_sketch.jpg" alt="Hand drawing of the children's exploration play structure"></div><div class="cap"><b>Children's exploration area</b>, play structure sketch.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="folio"><span><b>.4</b> Tropical Botanical Garden</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page" data-cat="parks" data-title="Wenchang: facility plans">
+  <div class="sh">Facility Siting Plans · Lighting, Bins, Seating, Restrooms</div>
+  <div class="g" style="grid-template-columns:repeat(4,1fr);gap:18px;margin-top:4px">
+    <div><div class="fig" style="height:420px"><img src="img/wc_light1.jpg" alt="Lighting plan, first fixture type"></div><div class="cap"><b>Lighting, type A.</b> Five fixture types placed by function and view.</div></div>
+    <div><div class="fig" style="height:420px"><img src="img/wc_light2.jpg" alt="Lighting plan, second fixture type"></div><div class="cap"><b>Lighting, type B.</b> Lawn and path lights for even coverage.</div></div>
+    <div><div class="fig" style="height:420px"><img src="img/wc_bins.jpg" alt="Waste bin plan"></div><div class="cap"><b>Waste bins.</b> Every 50 m on primary and 100 m on secondary paths.</div></div>
+    <div><div class="fig" style="height:420px"><img src="img/wc_toilet.jpg" alt="Restroom plan"></div><div class="cap"><b>Restrooms.</b> 18 outdoor restrooms, 280 stalls, an accessible stall in each.</div></div>
+  </div>
+  <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:24px">
+    <div><div class="fig" style="height:320px"><img src="img/wc_bench.jpg" alt="Seating plan"></div><div class="cap"><b>Seating.</b> Concentrated at busy areas and viewpoints, with extra seating indoors for Hainan's heat and insects.</div></div>
+    <ul class="bul" style="align-self:start">
+      <li>Facility counts follow China's park design code; locations follow raster analysis of visitor hot spots and accessibility.</li>
+      <li>Female-to-male stall ratio of at least 1.5:1.</li>
+      <li>Buried, spot, lawn, courtyard and landscape lights balance safety and night views while limiting light pollution.</li>
+    </ul>
+    <div class="role-box"><div class="sh">Six Zones</div><p>Rainforest exploration core with 13 insect observation rooms and 2 bird towers; Hainan native plant gardens around a flower-shaped plaza; science education labs and a smart plant museum; a children's camp and theater; a university research base; and three entry plazas with a visitor center.</p></div>
+  </div>
+  <div class="folio"><span><b>.4</b> Tropical Botanical Garden</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .5 UAV ===== -->
+<section class="page proj" data-cat="transport" data-title="Drone–truck delivery" data-project="Drone–Truck Collaborative Delivery" data-desc="Urban logistics network optimization · Shenzhen" data-year="2025" data-thumb="img/uav_r3.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Urban Logistics Optimization</div>
+    <div class="sub">Low-Altitude Economy: Path Planning for Drone–Ground Vehicle Collaborative Delivery</div>
+    <div class="f"><b>Year</b> – February – June 2025</div>
+    <div class="f"><b>Project Type</b> – Undergraduate thesis, HNU-ASU Joint International Tourism College</div>
+    <div class="f"><b>Advisor</b> – Lin Zhang</div>
+    <div class="f"><b>Team</b> – J. Gong, W. Lin, Y. Zhang (co-authors, listed in no particular order)</div>
+    <div class="f"><b>Skills Used</b> – Python, MILP in Gurobi, TSP heuristics, genetic algorithms, ArcGIS</div>
+    <div class="f"><b>Project Overview</b> – Compared drone-only (UAVRP), truck-only (CVRP) and collaborative (VRPD) delivery around Shenzhen Talent Park: 2.37 km², 50 demand nodes, one depot.</div>
+    <div class="f"><b>My Role</b> – Built the Python framework (MILP models, nearest-neighbor warm starts, GA) and the ArcGIS case study and scenarios.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1.25fr 1fr;gap:22px">
+      <div><div class="sh">Study Area · Shenzhen Talent Park</div><div class="fig fcover" style="height:470px;border:0"><img src="img/uav_3d.jpg" alt="3D rendering of drones serving buildings around the study area"></div></div>
+      <div><div class="sh">Algorithm</div><div class="fig" style="height:470px"><img src="img/uav_flow.jpg" alt="Algorithm flowchart"></div></div>
+    </div>
+    <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:22px">
+      <div><div class="sh">Model</div><p>Objective = 0.8 × completion time + 0.2 × cost. Trucks travel Manhattan distances; drones fly straight lines with a 5 km range and payload limits.</p></div>
+      <div><div class="sh">Solution</div><p>MILP in Gurobi with nearest-neighbor TSP warm starts; a genetic algorithm improves routes. Optimality gaps of 1.59–1.87%.</p></div>
+      <div><div class="fig" style="height:230px"><img src="img/uav_sat.jpg" alt="Satellite image of the study area"></div></div>
+    </div>
+    <div class="folio"><span><b>.5</b> Drone–Truck Delivery</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page" data-cat="transport" data-title="Drone–truck delivery: results">
+  <div class="sh">Optimized Routes</div>
+  <div class="g" style="grid-template-columns:repeat(3,1fr);gap:22px">
+    <div><div class="fig" style="height:480px"><img src="img/uav_r1.jpg" alt="Drone-only routes"></div><div class="cap"><b>Drone only.</b> Many round trips; some nodes split by payload and range.</div></div>
+    <div><div class="fig" style="height:480px"><img src="img/uav_r2.jpg" alt="Truck-only routes"></div><div class="cap"><b>Truck only.</b> Five long routes with detours to the far end.</div></div>
+    <div><div class="fig" style="height:480px"><img src="img/uav_r3.jpg" alt="Collaborative routes"></div><div class="cap"><b>Collaborative.</b> Four truck routes cover dense cores; two drone routes take scattered stops.</div></div>
+  </div>
+  <div class="g" style="grid-template-columns:240px 240px 1fr;gap:30px;margin-top:30px;align-items:start">
+    <div class="stat"><div class="n">−41.2%</div><div class="l">completion time vs. truck only (63 → 37 min)</div></div>
+    <div class="stat"><div class="n">−12.5%</div><div class="l">delivery distance vs. truck only (19.20 → 16.80 km)</div></div>
+    <table class="t">
+      <thead><tr><th>Metric</th><th>Drone only</th><th>Truck only</th><th>Collaborative</th></tr></thead>
+      <tbody>
+        <tr><td>Completion time (min)</td><td>33</td><td>63</td><td>37</td></tr>
+        <tr><td>Distance (km)</td><td>29.48</td><td>19.20</td><td>16.80</td></tr>
+        <tr><td>Weighted objective (lower is better)</td><td>58.57</td><td>58.08</td><td>55.88</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="bul" style="margin-top:22px;grid-template-columns:1fr 1fr;gap:8px 30px">
+    <li>Sensitivity tests: weighting time at 0.9 widened the collaborative advantage to 6.4%; it held across drone speed and time-conversion tests.</li>
+    <li>Results are model simulations under stated assumptions, not observed operations.</li>
+  </ul>
+  <div class="folio"><span><b>.5</b> Drone–Truck Delivery</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .6 TRANSPORT ANALYTICS ===== -->
+<section class="page proj roomy" data-cat="transport" data-title="Transportation planning analytics" data-project="Transportation Planning Analytics" data-desc="Transit performance, benefit–cost, travel trends" data-year="Fall 2025" data-thumb="img/pr_photo.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Transportation Planning Analytics</div>
+    <div class="sub">CPLN 5500 Introduction to Transportation Planning</div>
+    <div class="f"><b>Year</b> – Fall 2025</div>
+    <div class="f"><b>Project Type</b> – Course assignments, graduate</div>
+    <div class="f"><b>Team</b> – With Weikang Kong and Gavin Defina</div>
+    <div class="f"><b>Skills Used</b> – R, National Transit Database, Social Explorer / ACS, benefit–cost analysis, OLS regression</div>
+    <div class="f"><b>Project Overview</b> – A set of analyses on transit performance, project evaluation, long-run travel trends in Philadelphia and station ridership models.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:40px">
+      <div>
+        <div class="sh">U.S. Transit Performance, 2024 (NTD)</div>
+        <svg class="chart" viewBox="0 0 470 300" width="100%" role="img" aria-label="Average speed and farebox recovery by mode">
+          <g transform="translate(110,20)">
+            <text class="lab" x="0" y="-4">Average speed (mph)</text>
+            <rect x="0" y="8" width="280" height="20" fill="#2C7A7B"/><text class="val" x="286" y="23">28.8</text><text class="lab" x="-10" y="23" text-anchor="end">Commuter rail</text>
+            <rect x="0" y="34" width="194" height="20" fill="#2C7A7B"/><text class="val" x="200" y="49">20.0</text><text class="lab" x="-10" y="49" text-anchor="end">Heavy rail</text>
+            <rect x="0" y="60" width="143" height="20" fill="#2C7A7B"/><text class="val" x="149" y="75">14.7</text><text class="lab" x="-10" y="75" text-anchor="end">Light rail</text>
+            <text class="lab" x="0" y="128">Farebox recovery ratio</text>
+            <rect x="0" y="136" width="234" height="20" fill="#8FBFBD"/><text class="val" x="240" y="151">0.469</text><text class="lab" x="-10" y="151" text-anchor="end">Commuter rail</text>
+            <rect x="0" y="162" width="280" height="20" fill="#8FBFBD"/><text class="val" x="286" y="177">0.562</text><text class="lab" x="-10" y="177" text-anchor="end">Heavy rail</text>
+            <rect x="0" y="188" width="126" height="20" fill="#8FBFBD"/><text class="val" x="132" y="203">0.252</text><text class="lab" x="-10" y="203" text-anchor="end">Light rail</text>
+            <rect x="0" y="214" width="90" height="20" fill="#8FBFBD"/><text class="val" x="96" y="229">0.181</text><text class="lab" x="-10" y="229" text-anchor="end">Bus</text>
+          </g>
+        </svg>
+        <p class="cap">Heavy rail is the most productive per route mile and recovers the largest share of costs from fares.</p>
+        <div class="sh" style="margin-top:26px">Philadelphia Travel Trends, 1980–2020</div>
+        <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:16px">
+          <div class="stat"><div class="n">71.3%</div><div class="l">households with 1+ car in 2020 (61.5% in 1980)</div></div>
+          <div class="stat"><div class="n">1.06</div><div class="l">cars per household (0.89 in 1980)</div></div>
+          <div class="stat"><div class="n">2.1%</div><div class="l">bike commute share in 2020 (0.9% in 2000)</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sh">Benefit–Cost Evaluation</div>
+        <p>A $140 M highway project over 30 years: travel-time savings against construction, O&amp;M, construction delay and emissions costs.</p>
+        <div class="g" style="grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+          <div class="stat"><div class="n">+$3.3M</div><div class="l">NPV at a 4% discount rate</div></div>
+          <div class="stat"><div class="n" style="color:#B5475A">−$33.5M</div><div class="l">NPV at 6%</div></div>
+        </div>
+        <p style="margin-top:14px">The verdict flips with the discount rate, so unquantified effects such as induced demand and safety carry the decision.</p>
+        <div class="sh" style="margin-top:28px">Station Ridership Models</div>
+        <p>OLS models in R of weekday heavy-rail station ridership on jobs and population within half a mile and terminal and airport stations, with residual diagnostics and a nested-model test.</p>
+        <div class="sh" style="margin-top:22px">Who Makes No Trips?</div>
+        <p>Household travel survey analysis of residents reporting zero trips, compared by race, age and income, with the reasons they gave.</p>
+      </div>
+    </div>
+    <div class="folio"><span><b>.6</b> Transportation Planning Analytics</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<!-- ===== .7 ORLANDO ===== -->
+<section class="page proj" data-cat="modeling" data-title="Orlando growth scenarios" data-project="Orlando Growth Scenario Model" data-desc="Land development forecast with a new corridor" data-year="Spring 2026" data-thumb="img/orl_scen.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Land Use Scenario Modeling</div>
+    <div class="sub">Scenario-Based Land Development Forecast · Orlando MSA, 2019–2027</div>
+    <div class="f"><b>Year</b> – Spring 2026</div>
+    <div class="f"><b>Project Type</b> – CPLN 6750 Land Use &amp; Environmental Modeling, planning memo</div>
+    <div class="f"><b>Instructor</b> – Michael Fichman</div>
+    <div class="f"><b>Team</b> – Yichen Hu, Yuqi Zhang</div>
+    <div class="f"><b>Skills Used</b> – R, logistic regression, NLCD land cover, spatial lag, FEMA flood data, ROC/AUC</div>
+    <div class="f"><b>Project Overview</b> – The region could add nearly one million residents by 2045. We modeled land conversion from 2011 to 2019 on a ~900 m grid and forecast 2019–2027 development under a baseline and a hypothetical east–west connector from Orange County to US 192.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:26px">
+      <div><div class="sh">Baseline Forecast</div><div class="fig" style="height:610px"><img src="img/orl_base.jpg" alt="Baseline predicted development"></div></div>
+      <div><div class="sh">Hypothetical Corridor Scenario</div><div class="fig" style="height:610px"><img src="img/orl_scen.jpg" alt="Corridor scenario predicted development"></div></div>
+    </div>
+    <div class="g" style="grid-template-columns:repeat(4,1fr);gap:22px;margin-top:24px">
+      <div class="stat"><div class="n">2,078</div><div class="l">cells likely to develop, baseline</div></div>
+      <div class="stat"><div class="n">2,197</div><div class="l">cells under the corridor (+119, +5.7%)</div></div>
+      <div class="stat"><div class="n">0.85</div><div class="l">AUC; Youden threshold 0.030</div></div>
+      <div class="stat"><div class="n">0.754</div><div class="l">sensitivity (specificity 0.850)</div></div>
+    </div>
+    <div class="folio"><span><b>.7</b> Orlando Growth Scenarios</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<section class="page" data-cat="modeling" data-title="Orlando: floodplain exposure">
+  <div class="g" style="grid-template-columns:1fr 1fr 420px;gap:28px">
+    <div><div class="sh">Predicted Development vs. FEMA Floodplain</div><div class="fig" style="height:780px"><img src="img/orl_flood.jpg" alt="Predicted development overlaid on FEMA flood zones"></div></div>
+    <div class="g" style="grid-template-rows:auto auto;gap:18px">
+      <div><div class="sh">Development Rate by 2011 Land Cover</div><div class="fig" style="height:355px"><img src="img/orl_bar.jpg" alt="Development rate by land cover"></div></div>
+      <div><div class="sh">Model Fit</div><div class="fig" style="height:355px"><img src="img/orl_roc.jpg" alt="ROC curve AUC 0.85"></div></div>
+    </div>
+    <div>
+      <div class="sh">Findings</div>
+      <div class="stat" style="margin-bottom:16px"><div class="n">330</div><div class="l">scenario cells (15.0%) in FEMA Special Flood Hazard Areas, 182 of them in Orange County</div></div>
+      <ul class="bul">
+        <li>The spatial lag of nearby development is the strongest predictor, confirming edge expansion.</li>
+        <li>Farmland converted fastest (4.3% of 2011 cells).</li>
+      </ul>
+      <div class="sh" style="margin-top:22px">Recommendations</div>
+      <ul class="bul">
+        <li>Steer corridor growth into compact, mixed-use nodes at interchanges with phased permitting.</li>
+        <li>Strengthen floodplain development review in Orange and Lake Counties.</li>
+        <li>Use the forecast for screening: the corridor is hypothetical and cells are not parcel predictions.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="folio"><span><b>.7</b> Orlando Growth Scenarios</span><span class="pn"></span></div>
+</section>
+
+<!-- ===== .8 FLOOD ===== -->
+<section class="page proj" data-cat="modeling" data-title="Flood probability model" data-project="Flood Probability Model Transfer" data-desc="Calgary 2013 flood to Salt Lake City" data-year="Spring 2026" data-thumb="img/fl_slc.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Flood Susceptibility Modeling</div>
+    <div class="sub">Estimating a Flood Inundation Probability Map: Calgary to Salt Lake City</div>
+    <div class="f"><b>Year</b> – Spring 2026</div>
+    <div class="f"><b>Project Type</b> – CPLN 6750 Land Use &amp; Environmental Modeling</div>
+    <div class="f"><b>Team</b> – Gab Chen, Yuqi Zhang</div>
+    <div class="f"><b>Skills Used</b> – R, raster GIS, DEM processing, flow accumulation, zonal statistics, logistic regression</div>
+    <div class="f"><b>Project Overview</b> – A logistic model trained on Calgary's 2013 flood, using elevation, slope, flow accumulation, distance to river and impervious surface on a 500 × 500 m fishnet, then transferred to Salt Lake City.</div>
+  </div>
+  <div class="main">
+    <div class="sh">Predictors</div>
+    <div class="fig" style="height:170px"><img src="img/fl_vars.jpg" alt="Five predictor rasters"></div>
+    <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px">
+      <div><div class="sh">Calgary · Predicted</div><div class="fig" style="height:560px"><img src="img/fl_cal.jpg" alt="Calgary predicted probability"></div></div>
+      <div><div class="sh">Calgary · Classification</div><div class="fig" style="height:560px"><img src="img/fl_class.jpg" alt="Calgary classification outcomes"></div></div>
+      <div><div class="sh">Salt Lake City · Transferred</div><div class="fig" style="height:560px"><img src="img/fl_slc.jpg" alt="Salt Lake City predicted probability"></div></div>
+    </div>
+    <ul class="bul" style="margin-top:18px;grid-template-columns:1fr 1fr 1fr;gap:8px 24px">
+      <li><b>AUC 0.93</b> on the 30% Calgary test set.</li>
+      <li>A high AUC still hides missed flood cells; Salt Lake City has no local inundation data to validate.</li>
+      <li>Rainfall, snowmelt and drainage infrastructure are outside the model: a screening tool.</li>
+    </ul>
+    <div class="folio"><span><b>.8</b> Flood Probability Model</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<!-- ===== .9 ITHACA ===== -->
+<section class="page proj" data-cat="modeling" data-title="Hydrological risk assessment" data-project="Hydrological Risk Assessment" data-desc="Hazardous waste facility siting · Ithaca, NY" data-year="Spring 2026" data-thumb="img/ith_shed.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Watershed Risk Analysis</div>
+    <div class="sub">Proposed Hazardous Waste Collection Facility · Ithaca, New York</div>
+    <div class="f"><b>Year</b> – Spring 2026</div>
+    <div class="f"><b>Project Type</b> – Graduate coursework, decision brief for a city director</div>
+    <div class="f"><b>Skills Used</b> – DEM watershed delineation, flow network, NLCD land cover, SSURGO soils</div>
+    <div class="f"><b>Project Overview</b> – Could contaminants from a proposed facility reach the municipal drinking water intake during a major storm?</div>
+    <div class="f"><b>Finding</b> – The site lies outside the intake's contributing watershed, with no direct surface pathway. Under normal conditions, the risk to the water supply is low.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:26px">
+      <div><div class="sh">Site Context</div><div class="fig" style="height:620px"><img src="img/ith_site.jpg" alt="Waste facility location map"></div></div>
+      <div><div class="sh">Watershed Delineation &amp; Surface Flow</div><div class="fig" style="height:620px"><img src="img/ith_shed.jpg" alt="Watershed delineation and flow network"></div></div>
+    </div>
+    <ul class="bul" style="margin-top:18px;grid-template-columns:1fr 1fr;gap:8px 30px">
+      <li>Runoff from the site drains to a separate basin, away from the intake.</li>
+      <li>Remaining risks are indirect: groundwater movement and extreme storms; land cover and soil groups flag where infiltration could matter.</li>
+    </ul>
+    <div class="folio"><span><b>.9</b> Hydrological Risk Assessment</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<!-- ===== .10 SPRUCE HILL ===== -->
+<section class="page proj" data-cat="policy" data-title="Spruce Hill neighborhood study" data-project="Spruce Hill Neighborhood Study" data-desc="Anchor institution and neighborhood change · Philadelphia" data-year="Fall 2025" data-thumb="img/sh_photo.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Neighborhood Analysis</div>
+    <div class="sub">Spruce Hill: A Neighborhood Shaped by Its Anchor Institution</div>
+    <div class="f"><b>Year</b> – Fall 2025</div>
+    <div class="f"><b>Project Type</b> – CPLN 5010 Quantitative Planning Analysis; team report and individual portrait</div>
+    <div class="f"><b>Team</b> – J. Dick, D. Jalloh, O. Martin, Y. Zhang</div>
+    <div class="f"><b>Skills Used</b> – Census/ACS, employment data, R, Excel charts, mapping</div>
+    <div class="f"><b>Project Overview</b> – West Philadelphia's first streetcar suburb now sits beside the University of Pennsylvania. We traced how the university shapes who lives here, what housing costs and which businesses survive.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr 1fr;gap:22px">
+      <div><div class="fig fcover" style="height:280px;border:0"><img src="img/sh_photo.jpg" alt="Victorian twin houses in Spruce Hill"></div>
+        <div class="g" style="grid-template-columns:1fr 1fr;gap:16px;margin-top:18px">
+          <div class="stat"><div class="n">−17%</div><div class="l">population, 2013–2023 (18,272 → 15,085)</div></div>
+          <div class="stat"><div class="n">+14%</div><div class="l">households (5,432 → 6,175)</div></div>
+        </div>
+      </div>
+      <div><div class="sh">Neighborhood Composition</div><div class="fig" style="height:360px"><img src="img/sh_info.jpg" alt="Neighborhood composition vs Philadelphia"></div></div>
+      <div><div class="sh">Geographic Context</div><div class="fig" style="height:360px"><img src="img/sh_map.jpg" alt="Spruce Hill context map"></div></div>
+    </div>
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:22px;margin-top:22px">
+      <div><div class="sh">Income by Household Type</div><div class="fig" style="height:360px"><img src="img/sh_income.jpg" alt="Income by household type"></div></div>
+      <div><div class="sh">Southeast Spruce Hill Historic District</div><div class="fig" style="height:360px"><img src="img/sh_hist.jpg" alt="Historic district map"></div></div>
+    </div>
+    <div class="folio"><span><b>.10</b> Spruce Hill</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<!-- ===== .11 FORECASTS ===== -->
+<section class="page proj roomy" data-cat="policy" data-title="Philadelphia forecasts" data-project="Philadelphia Population &amp; Employment Forecasts" data-desc="Policy memos to the Mayor's office" data-year="Fall 2025" data-thumb="img/sh_enroll.jpg">
+  <div class="side">
+    <div class="num pnum"></div>
+    <div class="ttl">Forecasting for Policy</div>
+    <div class="sub">2030 Population &amp; Housing Forecast · 2031 Employment Forecast</div>
+    <div class="f"><b>Year</b> – Fall 2025</div>
+    <div class="f"><b>Project Type</b> – CPLN 5010 policy memos to Mayor Cherelle L. Parker and the Economic Development Team</div>
+    <div class="f"><b>Team</b> – Population memo with Oliver Martin; employment memo individual</div>
+    <div class="f"><b>Skills Used</b> – Cohort-survival projection, location quotients, shift-share, employment multipliers, trend regression</div>
+    <div class="f"><b>Project Overview</b> – Short memos that turn forecasts into housing and economic development recommendations.</div>
+  </div>
+  <div class="main">
+    <div class="g" style="grid-template-columns:1fr 1fr;gap:44px">
+      <div>
+        <div class="sh">2030 Population &amp; Housing</div>
+        <p>A cohort-survival projection by five-year age group shows Philadelphia growing again but aging: seniors and Millennials drive most of the growth.</p>
+        <div class="g" style="grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px">
+          <div class="stat"><div class="n">+50k</div><div class="l">residents, 2015–2030</div></div>
+          <div class="stat"><div class="n">+16k</div><div class="l">owner households</div></div>
+          <div class="stat"><div class="n">+3k</div><div class="l">renter households</div></div>
+        </div>
+        <div class="sh" style="margin-top:24px">Recommendations</div>
+        <ul class="bul">
+          <li>Keep senior housing in good repair; add low-maintenance units near transit.</li>
+          <li>Expand property tax relief so seniors on fixed incomes can stay.</li>
+          <li>Help first-time Millennial buyers with down-payment assistance and larger units.</li>
+        </ul>
+        <div class="sh" style="margin-top:24px">Testing the Trend</div>
+        <p>Linear and quadratic fits (R² 0.925 and 0.939) projected 1.23 million and 1.39 million residents in 2030: model choice can swing a forecast more than goodness of fit suggests.</p>
+      </div>
+      <div>
+        <div class="sh">Employment, 2022–2031</div>
+        <p>Location quotients, multipliers and five projection methods agree on moderate growth led by health care, education and professional services.</p>
+        <svg class="chart" viewBox="0 0 560 120" width="100%" role="img" aria-label="Projected job gains range from 32,000 to 94,000" style="margin-top:14px">
+          <line x1="20" y1="60" x2="540" y2="60" stroke="#DCE5E4" stroke-width="2"/>
+          <rect x="140" y="48" width="340" height="24" fill="#2C7A7B" opacity=".25"/>
+          <circle cx="140" cy="60" r="7" fill="#2C7A7B"/><circle cx="480" cy="60" r="7" fill="#2C7A7B"/>
+          <text class="val" x="140" y="34" text-anchor="middle">+32,000</text><text class="val" x="480" y="34" text-anchor="middle">+94,000</text>
+          <text class="lab" x="310" y="100" text-anchor="middle">Range of projected job gains across five methods</text>
+        </svg>
+        <div class="g" style="grid-template-columns:1fr 1fr;gap:16px;margin-top:10px">
+          <div class="stat"><div class="n">~670k</div><div class="l">county jobs in 2031, preferred shift-share scenario</div></div>
+          <div class="stat"><div class="n">LQ &gt; 1</div><div class="l">health care, the core export sector</div></div>
+        </div>
+        <div class="sh" style="margin-top:24px">Recommendations</div>
+        <ul class="bul">
+          <li>Reinforce core export industries in health, education and professional services.</li>
+          <li>Strengthen talent pipelines into high-skill sectors.</li>
+          <li>Invest in infrastructure that supports advanced services and health care.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="folio"><span><b>.11</b> Philadelphia Forecasts</span><span class="pn"></span></div>
+  </div>
+</section>
+
+<!-- ===== BACK ===== -->
+<section class="page cover endpg" data-cat="end" data-title="Thank you" id="end">
+  <div class="ph"><img src="img/pr_photo_end2.jpg" alt="Port Richmond street collage with trolley and school bus"></div>
+  <div class="band">
+    <h1>THANK<br>YOU</h1>
+    <div class="rule2"></div>
+    <div class="nm">YUQI ZHANG</div>
+    <div class="p">yqizhang@upenn.edu<br>(267) 709-0524<br><a href="https://www.linkedin.com/in/yuqi-zhang-cpln">linkedin.com/in/yuqi-zhang-cpln</a></div>
+  </div>
+  <span class="credit">Collage by G. Britt, Port Richmond studio team</span>
+</section>
+
+</div></main>
+
+<script>
+(function(){
+  const CATS=[
+    {id:'studios',name:'Planning Studios'},
+    {id:'parks',name:'Parks & Public Space'},
+    {id:'transport',name:'Transportation'},
+    {id:'modeling',name:'Spatial Modeling'},
+    {id:'policy',name:'Neighborhood & Policy'}
+  ];
+  const book=document.getElementById('book');
+  const pages=[...book.querySelectorAll(':scope > .page')];
+  let pn=0;
+  pages.forEach((p,i)=>{ p.dataset.index=i; if(!p.id) p.id='page-'+(i+1);
+    const f=p.querySelector('.pn'); if(f) f.textContent=String(i+1).padStart(2,'0');
+    if(p.dataset.project){ pn++; p.dataset.pno=pn; const n=p.querySelector('.pnum'); if(n) n.textContent='.'+pn; } });
+  const projs=pages.filter(p=>p.dataset.project);
+  const toc=document.getElementById('toc');
+  const colL=document.createElement('div'), colR=document.createElement('div');
+  colL.style.cssText=colR.style.cssText='display:grid;gap:12px;align-content:start';
+  const split=['studios','parks'];
+  CATS.forEach(c=>{
+    const list=projs.filter(p=>p.dataset.cat===c.id); if(!list.length) return;
+    const col=split.includes(c.id)?colL:colR;
+    const h=document.createElement('div'); h.className='grp'; h.textContent=c.name; col.appendChild(h);
+    list.forEach(p=>{ const a=document.createElement('a'); a.href='#'+p.id;
+      a.innerHTML='<div class="th"><img src="'+p.dataset.thumb+'" alt=""></div><div class="no">.'+p.dataset.pno+'</div><div><div class="tt">'+p.dataset.project+'</div><div class="ds">'+(p.dataset.desc||'')+'</div><div class="yr">'+(p.dataset.year||'')+' · p. '+(+p.dataset.index+1)+'</div></div>';
+      col.appendChild(a); });
+  });
+  toc.appendChild(colL); toc.appendChild(colR);
+
+  if(/print/.test(location.search)) return;
+
+  const N=pages.length, stage=document.getElementById('stage'), viewer=document.getElementById('viewer');
+  const nav=document.getElementById('catnav'), count=document.getElementById('count');
+  const prevB=document.getElementById('prev'), nextB=document.getElementById('next'), modeB=document.getElementById('modebtn');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clone=i=>{ if(i<0||i>=N) return null; const c=pages[i].cloneNode(true); c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id')); return c; };
+  let spread=stage.clientWidth/stage.clientHeight>1.9, k=0, busy=false;
+  viewer.innerHTML='<div class="slot l"></div><div class="slot r"></div><div class="spine"></div>';
+  const L=viewer.querySelector('.slot.l'), R=viewer.querySelector('.slot.r');
+  const leftOf=kk=>spread?kk*2-1:-1, rightOf=kk=>spread?kk*2:kk;
+  const maxK=()=>spread?Math.floor(N/2):N-1;
+  const kOf=i=>spread?Math.floor((i+1)/2):i;
+  function fill(slot,i){ slot.innerHTML=''; const c=clone(i); slot.classList.toggle('empty',!c); if(c) slot.appendChild(c); slot.dataset.i=i; }
+  function fit(){ const w=spread?3200:1600; viewer.style.width=w+'px'; viewer.classList.toggle('single',!spread);
+    const r=Math.min((stage.clientWidth-(spread?40:130))/w,(stage.clientHeight-30)/1000); viewer.style.transform='scale('+Math.max(r,.1)+')'; }
+  function status(){ const a=leftOf(k), b=rightOf(k); const shown=[a,b].filter(i=>i>=0&&i<N);
+    count.textContent=(shown.length>1?(shown[0]+1)+'–'+(shown[1]+1):(shown[0]+1))+' / '+N;
+    prevB.disabled=k<=0; nextB.disabled=k>=maxK();
+    const cat=pages[shown[shown.length-1]].dataset.cat;
+    nav.querySelectorAll('button').forEach(b=>{const on=b.dataset.cat===cat; b.setAttribute('aria-current',on?'true':'false'); if(on) b.scrollIntoView({block:'nearest',inline:'nearest'});});
+    try{history.replaceState(null,'','#'+pages[shown[0]].id);}catch(e){} }
+  function show(kk){ k=kk; fill(L,leftOf(k)); fill(R,rightOf(k)); status(); }
+  function turn(target){
+    target=Math.max(0,Math.min(maxK(),target)); if(target===k||busy) return;
+    if(reduce){ show(target); return; }
+    busy=true; const fwd=target>k;
+    const leaf=document.createElement('div'); leaf.className='leaf';
+    const front=document.createElement('div'); front.className='face front';
+    const back=document.createElement('div'); back.className='face back';
+    let frontI, backI, end;
+    if(spread){
+      if(fwd){ frontI=rightOf(k); backI=leftOf(target); leaf.style.left='1600px'; leaf.style.transformOrigin='left center'; fill(R,rightOf(target)); end='rotateY(-180deg)'; }
+      else { frontI=leftOf(k); backI=rightOf(target); leaf.style.left='0'; leaf.style.transformOrigin='right center'; fill(L,leftOf(target)); end='rotateY(180deg)'; }
+    } else {
+      if(fwd){ frontI=k; backI=-1; leaf.style.left='0'; leaf.style.transformOrigin='left center'; fill(R,target); end='rotateY(-180deg)'; }
+      else { frontI=target; backI=-1; leaf.style.left='0'; leaf.style.transformOrigin='left center'; leaf.style.transform='rotateY(-180deg)'; end='rotateY(0deg)'; }
+    }
+    const fc=clone(frontI), bc=clone(backI); if(fc) front.appendChild(fc); if(bc) back.appendChild(bc); else back.style.background='#fff';
+    leaf.appendChild(front); leaf.appendChild(back); viewer.appendChild(leaf);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ leaf.classList.add('turning'); leaf.style.transform=end; }));
+    setTimeout(()=>{ leaf.remove(); show(target); busy=false; },1000);
+  }
+  const go=i=>turn(kOf(Math.max(0,Math.min(N-1,i))));
+  const all=[{id:'cover',name:'Cover',first:'cover'},{id:'contents',name:'Contents',first:'contents'},...CATS.map(c=>({...c,first:(projs.find(p=>p.dataset.cat===c.id)||{}).id}))];
+  all.forEach(c=>{const b=document.createElement('button');b.textContent=c.name;b.dataset.cat=c.id;b.addEventListener('click',()=>go(idx(c.first)));nav.appendChild(b);});
+  const idx=id=>{const p=document.getElementById(id);return p?+p.dataset.index:0};
+  prevB.addEventListener('click',()=>turn(k-1)); nextB.addEventListener('click',()=>turn(k+1));
+  document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='PageDown') turn(k+1); if(e.key==='ArrowLeft'||e.key==='PageUp') turn(k-1); if(e.key==='Escape') closeGrid(); });
+  viewer.addEventListener('click',e=>{ const a=e.target.closest('a[href^="#"]'); if(a){ e.preventDefault(); go(idx(a.getAttribute('href').slice(1))); return; }
+    if(e.target.closest('a')) return; const s=e.target.closest('.slot'); if(!s||s.classList.contains('empty')) return;
+    if(!spread){ const x=e.clientX-s.getBoundingClientRect().left; turn(k+(x<s.getBoundingClientRect().width/3?-1:1)); } else turn(k+(s===R?1:-1)); });
+  let sx=null; stage.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',e=>{ if(sx===null) return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) turn(k+(dx<0?1:-1)); sx=null; });
+  function setMode(sp){ const first=Math.max(0,leftOf(k)>=0?leftOf(k):rightOf(k)); spread=sp; modeB.textContent=spread?'Single page':'Two pages'; fit(); show(kOf(first)); }
+  modeB.addEventListener('click',()=>setMode(!spread));
+  const ov=document.getElementById('overlay'), gb=document.getElementById('gridbtn'), th=document.getElementById('thumbs'); let built=false;
+  function openGrid(){ if(!built){ pages.forEach((p,i)=>{const b=document.createElement('button');b.className='thb';const m=document.createElement('div');m.className='mini';m.appendChild(clone(i));b.appendChild(m);const s=document.createElement('span');s.textContent=(i+1)+' · '+(p.dataset.title||'');b.appendChild(s);b.addEventListener('click',()=>{closeGrid();show(kOf(i));});th.appendChild(b);}); built=true;} ov.classList.add('open'); gb.setAttribute('aria-expanded','true'); gb.textContent='Close'; }
+  function closeGrid(){ ov.classList.remove('open'); gb.setAttribute('aria-expanded','false'); gb.textContent='All pages'; }
+  gb.addEventListener('click',()=>ov.classList.contains('open')?closeGrid():openGrid());
+  window.addEventListener('resize',fit);
+  window.addEventListener('hashchange',()=>{const h=location.hash.slice(1); if(h&&document.getElementById(h)) show(kOf(idx(h)));});
+  modeB.textContent=spread?'Single page':'Two pages'; fit();
+  const h=location.hash.slice(1); show(h&&document.getElementById(h)?kOf(idx(h)):0);
+})();
+</script>
+</body>
+</html>
